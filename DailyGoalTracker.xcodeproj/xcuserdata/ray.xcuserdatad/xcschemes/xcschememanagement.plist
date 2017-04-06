@@ -9,9 +9,19 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>JTAppleCalendar.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>711A4B991E96A38D00A6DA25</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>71404C7E1E968EFB004F811A</key>
 		<dict>
 			<key>primary</key>
