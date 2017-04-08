@@ -10,7 +10,9 @@
 
 import JTAppleCalendar
 
-class CalendarViewController: UIViewController {
+class CalendarViewController: UIViewController, HasMainMenuProtocol {
+    
+    var mainMenuVC: MainMenuViewController?
     
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     @IBOutlet var monthLabel: UILabel!
@@ -18,7 +20,25 @@ class CalendarViewController: UIViewController {
     
     var numberOfRows = 6
     let formatter = DateFormatter()
+    
+    
     var testCalendar = Calendar.current
+//    var testCalendar = Calendar(identifier: .gregorian)
+    
+    
+    // Dictionary to hold past progress
+    //
+    // key is date.hasValue
+    // value is enum "GoalProgress" possible values are .bad, .mediocre, and .good
+    //
+    // these are sample values, to initailize empty do
+    // var dailyProgress: [Int:GoalProgress] = [:]
+    var dailyProgress = [1367841365386344000: GoalProgress.bad,
+                         1368070708636094400: GoalProgress.mediocre,
+                         1368300051885844800: GoalProgress.mediocre,
+                         1368529395135595200: GoalProgress.bad,
+                         1368758738385345600: GoalProgress.good]
+
     var generateInDates: InDateCellGeneration = .forAllMonths
     var generateOutDates: OutDateCellGeneration = .tillEndOfGrid
     var prePostVisibility: ((CellState, CellView?)->())?
@@ -31,11 +51,12 @@ class CalendarViewController: UIViewController {
     var prepostHiddenValue = false
     
     let red = UIColor.red
+    let yellow = UIColor.yellow
+    let green = UIColor.green
+    let blue = UIColor.blue
     let white = UIColor.white
     let black = UIColor.black
-    let gray = UIColor.gray
-    let shade = UIColor(colorWithHexValue: 0x4E4E4E)
-    
+    let gray = UIColor.gray    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,7 +105,6 @@ class CalendarViewController: UIViewController {
     }
     
     func handleCellConfiguration(cell: JTAppleCell?, cellState: CellState) {
-        handleCellSelection(view: cell, cellState: cellState)
         handleCellTextColor(view: cell, cellState: cellState)
         prePostVisibility?(cellState, cell as? CellView)
     }
@@ -94,39 +114,11 @@ class CalendarViewController: UIViewController {
         guard let myCustomCell = view as? CellView  else {
             return
         }
-        
-        if cellState.isSelected {
-            myCustomCell.dayLabel.textColor = white
+
+        if cellState.dateBelongsTo == .thisMonth {
+            myCustomCell.dayLabel.textColor = black
         } else {
-            if cellState.dateBelongsTo == .thisMonth {
-                myCustomCell.dayLabel.textColor = black
-            } else {
-                myCustomCell.dayLabel.textColor = gray
-            }
-        }
-    }
-    
-    // Function to handle the calendar selection
-    func handleCellSelection(view: JTAppleCell?, cellState: CellState) {
-        guard let myCustomCell = view as? CellView else {return }
-//                switch cellState.selectedPosition() {
-//                case .full:
-//                    myCustomCell.backgroundColor = .green
-//                case .left:
-//                    myCustomCell.backgroundColor = .yellow
-//                case .right:
-//                    myCustomCell.backgroundColor = .red
-//                case .middle:
-//                    myCustomCell.backgroundColor = .blue
-//                case .none:
-//                    myCustomCell.backgroundColor = nil
-//                }
-//        
-        if cellState.isSelected {
-            myCustomCell.selectedView.layer.cornerRadius =  13
-            myCustomCell.selectedView.isHidden = false
-        } else {
-            myCustomCell.selectedView.isHidden = true
+            myCustomCell.dayLabel.textColor = gray
         }
     }
     
@@ -160,22 +152,28 @@ extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarVi
         let myCustomCell = calendar.dequeueReusableCell(withReuseIdentifier: "CellView", for: indexPath) as! CellView
         
         myCustomCell.dayLabel.text = cellState.text
-        if testCalendar.isDateInToday(date) {
-            myCustomCell.backgroundColor = red
+
+        if let progress = dailyProgress[date.hashValue] {
+            switch progress {
+            case .bad:
+                myCustomCell.backgroundColor = red
+
+            case .mediocre:
+                myCustomCell.backgroundColor = yellow
+
+            case .good:
+                myCustomCell.backgroundColor = green
+            }
         } else {
             myCustomCell.backgroundColor = white
         }
         
+        if testCalendar.isDateInToday(date) {
+            myCustomCell.backgroundColor = blue
+        }
+        
         handleCellConfiguration(cell: myCustomCell, cellState: cellState)
         return myCustomCell
-    }
-    
-    func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        handleCellConfiguration(cell: cell, cellState: cellState)
-    }
-    
-    func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        handleCellConfiguration(cell: cell, cellState: cellState)
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {

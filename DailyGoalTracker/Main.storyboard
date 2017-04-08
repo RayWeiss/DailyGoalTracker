@@ -53,6 +53,9 @@
                                         </label>
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dqh-Gf-ih0">
                                             <rect key="frame" x="302" y="34" width="377" height="31"/>
+                                            <connections>
+                                                <action selector="toggleGoalSwitch:" destination="NWs-uv-4Ki" eventType="valueChanged" id="FcE-KU-P9F"/>
+                                            </connections>
                                         </switch>
                                     </subviews>
                                     <constraints>
@@ -331,7 +334,7 @@
         <!--Choice Menu-->
         <scene sceneID="Pw0-md-6kX">
             <objects>
-                <viewController title="Choice Menu" automaticallyAdjustsScrollViewInsets="NO" id="N42-HY-4w9" sceneMemberID="viewController">
+                <viewController title="Choice Menu" automaticallyAdjustsScrollViewInsets="NO" id="N42-HY-4w9" customClass="MainMenuViewController" customModule="DailyGoalTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QfN-nq-d8b"/>
                         <viewControllerLayoutGuide type="bottom" id="LLl-wr-Ind"/>

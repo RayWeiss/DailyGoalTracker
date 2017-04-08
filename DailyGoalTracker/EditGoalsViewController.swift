@@ -8,8 +8,10 @@
 
 import UIKit
 
-class EditGoalsViewController: UIViewController {
+class EditGoalsViewController: UIViewController, HasMainMenuProtocol {
 
+    var mainMenuVC: MainMenuViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

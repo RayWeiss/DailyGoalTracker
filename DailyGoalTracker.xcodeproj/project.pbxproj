@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		711831471E9942F6001E748D /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711831461E9942F6001E748D /* MainMenuViewController.swift */; };
+		711831491E9943FB001E748D /* ProgressEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711831481E9943FB001E748D /* ProgressEnum.swift */; };
+		7118314D1E995FEC001E748D /* HasMainMenuProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7118314C1E995FEC001E748D /* HasMainMenuProtocol.swift */; };
 		711A4B9E1E96A38E00A6DA25 /* JTAppleCalendar.h in Headers */ = {isa = PBXBuildFile; fileRef = 711A4B9C1E96A38E00A6DA25 /* JTAppleCalendar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		711A4BA11E96A38E00A6DA25 /* JTAppleCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711A4B9A1E96A38D00A6DA25 /* JTAppleCalendar.framework */; };
 		711A4BA21E96A38E00A6DA25 /* JTAppleCalendar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 711A4B9A1E96A38D00A6DA25 /* JTAppleCalendar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -63,6 +66,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		711831461E9942F6001E748D /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
+		711831481E9943FB001E748D /* ProgressEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressEnum.swift; sourceTree = "<group>"; };
+		7118314C1E995FEC001E748D /* HasMainMenuProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HasMainMenuProtocol.swift; sourceTree = "<group>"; };
 		711A4B9A1E96A38D00A6DA25 /* JTAppleCalendar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JTAppleCalendar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		711A4B9C1E96A38E00A6DA25 /* JTAppleCalendar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JTAppleCalendar.h; sourceTree = "<group>"; };
 		711A4B9D1E96A38E00A6DA25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -158,6 +164,7 @@
 		71404C811E968EFB004F811A /* DailyGoalTracker */ = {
 			isa = PBXGroup;
 			children = (
+				711831461E9942F6001E748D /* MainMenuViewController.swift */,
 				711A4BE81E96A89F00A6DA25 /* ManageProgressTableViewCell.swift */,
 				711A4BE91E96A89F00A6DA25 /* ManageProgressViewController.swift */,
 				711A4BE11E96A89F00A6DA25 /* CalendarViewController.swift */,
@@ -172,6 +179,8 @@
 				711A4BE61E96A89F00A6DA25 /* LaunchScreen.storyboard */,
 				71404C821E968EFB004F811A /* AppDelegate.swift */,
 				71404C8E1E968EFC004F811A /* Info.plist */,
+				711831481E9943FB001E748D /* ProgressEnum.swift */,
+				7118314C1E995FEC001E748D /* HasMainMenuProtocol.swift */,
 			);
 			path = DailyGoalTracker;
 			sourceTree = "<group>";
@@ -313,12 +322,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7118314D1E995FEC001E748D /* HasMainMenuProtocol.swift in Sources */,
 				711A4BEE1E96A89F00A6DA25 /* CalendarViewController.swift in Sources */,
 				711A4BEF1E96A89F00A6DA25 /* CellView.swift in Sources */,
 				711A4BEA1E96A89F00A6DA25 /* Animation.swift in Sources */,
 				71404C831E968EFB004F811A /* AppDelegate.swift in Sources */,
 				711A4BEB1E96A89F00A6DA25 /* AnimationClass.swift in Sources */,
 				711A4BF11E96A89F00A6DA25 /* EditGoalsViewController.swift in Sources */,
+				711831471E9942F6001E748D /* MainMenuViewController.swift in Sources */,
+				711831491E9943FB001E748D /* ProgressEnum.swift in Sources */,
 				711A4BF21E96A89F00A6DA25 /* Extensions.swift in Sources */,
 				711A4BF61E96A89F00A6DA25 /* ManageProgressViewController.swift in Sources */,
 				711A4BF51E96A89F00A6DA25 /* ManageProgressTableViewCell.swift in Sources */,
@@ -512,6 +524,7 @@
 				711A4BA41E96A38E00A6DA25 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		71404C7A1E968EFB004F811A /* Build configuration list for PBXProject "DailyGoalTracker" */ = {
 			isa = XCConfigurationList;
