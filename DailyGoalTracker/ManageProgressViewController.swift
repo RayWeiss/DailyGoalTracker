@@ -58,6 +58,7 @@ class ManageProgressViewController: UITableViewController {
         return cell
     }
     
+    //  keeping these for edit goals scene
     
     /*
      // Override to support conditional editing of the table view.
