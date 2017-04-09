@@ -24,20 +24,6 @@ class CalendarViewController: UIViewController, HasMainMenuProtocol {
     
     var testCalendar = Calendar.current
 //    var testCalendar = Calendar(identifier: .gregorian)
-    
-    
-    // Dictionary to hold past progress
-    //
-    // key is date.hasValue
-    // value is enum "GoalProgress" possible values are .bad, .mediocre, and .good
-    //
-    // these are sample values, to initailize empty do
-    // var dailyProgress: [Int:GoalProgress] = [:]
-    var dailyProgress = [1367841365386344000: GoalProgress.bad,
-                         1368070708636094400: GoalProgress.mediocre,
-                         1368300051885844800: GoalProgress.mediocre,
-                         1368529395135595200: GoalProgress.bad,
-                         1368758738385345600: GoalProgress.good]
 
     var generateInDates: InDateCellGeneration = .forAllMonths
     var generateOutDates: OutDateCellGeneration = .tillEndOfGrid
@@ -54,6 +40,14 @@ class CalendarViewController: UIViewController, HasMainMenuProtocol {
     let yellow = UIColor.yellow
     let green = UIColor.green
     let blue = UIColor.blue
+    
+    // ffa1a0 - red, ffffa0 - yellow, a0ffa0 - green, a0bfff - blue
+    let badColor = UIColor(colorWithHexValue: 0xffa1a0)
+    let mediocreColor = UIColor(colorWithHexValue: 0xffffa0)
+    let goodColor = UIColor(colorWithHexValue: 0xa0ffa0)
+    let todayColor = UIColor(colorWithHexValue: 0xa0bfff)
+
+    
     let white = UIColor.white
     let black = UIColor.black
     let gray = UIColor.gray    
@@ -122,6 +116,15 @@ class CalendarViewController: UIViewController, HasMainMenuProtocol {
         }
     }
     
+    
+    @IBAction func testFunc(_ sender: UIButton) {
+        mainMenuVC?.ProgressHistory[1362566470642084800] = .bad
+        calendarView.reloadData()
+    }
+    
+    @IBAction func testFunc2(_ sender: UIButton) {
+        mainMenuVC?.goalList.append(("Go to bed at 10:00 pm",false))
+    }
 }
 
 // MARK : JTAppleCalendarDelegate
@@ -152,24 +155,24 @@ extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarVi
         let myCustomCell = calendar.dequeueReusableCell(withReuseIdentifier: "CellView", for: indexPath) as! CellView
         
         myCustomCell.dayLabel.text = cellState.text
-
-        if let progress = dailyProgress[date.hashValue] {
+        
+        if let progress = mainMenuVC?.ProgressHistory[date.hashValue] {
             switch progress {
             case .bad:
-                myCustomCell.backgroundColor = red
+                myCustomCell.backgroundColor = badColor
 
             case .mediocre:
-                myCustomCell.backgroundColor = yellow
+                myCustomCell.backgroundColor = mediocreColor
 
             case .good:
-                myCustomCell.backgroundColor = green
+                myCustomCell.backgroundColor = goodColor
             }
         } else {
             myCustomCell.backgroundColor = white
         }
         
         if testCalendar.isDateInToday(date) {
-            myCustomCell.backgroundColor = blue
+            myCustomCell.backgroundColor = todayColor
         }
         
         handleCellConfiguration(cell: myCustomCell, cellState: cellState)

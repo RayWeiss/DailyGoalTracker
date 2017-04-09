@@ -10,25 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Edit Daily Goals-->
-        <scene sceneID="6aa-ED-tDK">
-            <objects>
-                <viewController title="Edit Daily Goals" id="DfK-UK-KbH" customClass="EditGoalsViewController" customModule="DailyGoalTracker" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="CbM-jQ-pjy"/>
-                        <viewControllerLayoutGuide type="bottom" id="kgk-zf-nuP"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Gms-y1-daq">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="My Goals" id="4w6-wd-AQx"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aaT-kQ-HMN" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2798" y="617"/>
-        </scene>
         <!--Today I...-->
         <scene sceneID="Cvc-hf-mUp">
             <objects>
@@ -83,6 +64,51 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1I3-AE-Osv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2798" y="-297"/>
+        </scene>
+        <!--My Goals-->
+        <scene sceneID="yFC-R8-o2Q">
+            <objects>
+                <tableViewController title="My Goals" id="whA-Uc-NOD" customClass="EditGoalsViewController" customModule="DailyGoalTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="28" sectionFooterHeight="28" id="Rdf-up-tXx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="100" id="Hel-9Y-in5" customClass="EditGoalsTableViewCell" customModule="DailyGoalTracker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hel-9Y-in5" id="8NQ-hN-ix5">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pou-u9-lT0">
+                                            <rect key="frame" x="8" y="8" width="301" height="84"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <action selector="editGoal:" destination="whA-Uc-NOD" eventType="editingDidEnd" id="pDg-ul-owo"/>
+                                                <outlet property="delegate" destination="whA-Uc-NOD" id="eu6-QA-s6V"/>
+                                            </connections>
+                                        </textField>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="goalTextField" destination="Pou-u9-lT0" id="6mN-4u-LEu"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="whA-Uc-NOD" id="f8u-lK-17P"/>
+                            <outlet property="delegate" destination="whA-Uc-NOD" id="cQt-7n-6as"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="My Goals" id="XTz-WS-DMs"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OF2-pz-E6P" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2797.5999999999999" y="732.68365817091455"/>
         </scene>
         <!--Ib Data Source-->
         <scene sceneID="tne-QT-ifu">
@@ -278,6 +304,22 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lTf-k5-GmE">
+                                <rect key="frame" x="42" y="501" width="106" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="04/08 to bad"/>
+                                <connections>
+                                    <action selector="testFunc:" destination="BYZ-38-t0r" eventType="touchUpInside" id="v4s-bl-tIA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zT1-Pj-idZ">
+                                <rect key="frame" x="251" y="501" width="82" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="AddGoal"/>
+                                <connections>
+                                    <action selector="testFunc2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Yzf-UA-A9y"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -313,7 +355,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3542" y="244"/>
+            <point key="canvasLocation" x="3546" y="268"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="enG-ib-FHj">
@@ -354,7 +396,7 @@
                                 <rect key="frame" x="16" y="392" width="343" height="99"/>
                                 <state key="normal" title="Edit Daily Goals"/>
                                 <connections>
-                                    <segue destination="DfK-UK-KbH" kind="show" id="Bka-Nk-3bO"/>
+                                    <segue destination="whA-Uc-NOD" kind="show" id="dF9-xC-5Ih"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ka3-3e-EFU">

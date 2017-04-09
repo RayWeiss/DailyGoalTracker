@@ -39,6 +39,7 @@
 		711A4BF51E96A89F00A6DA25 /* ManageProgressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711A4BE81E96A89F00A6DA25 /* ManageProgressTableViewCell.swift */; };
 		711A4BF61E96A89F00A6DA25 /* ManageProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711A4BE91E96A89F00A6DA25 /* ManageProgressViewController.swift */; };
 		71404C831E968EFB004F811A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71404C821E968EFB004F811A /* AppDelegate.swift */; };
+		71F5C68E1E9A94FC00C03145 /* EditGoalsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F5C68D1E9A94FC00C03145 /* EditGoalsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,7 @@
 		71404C7F1E968EFB004F811A /* DailyGoalTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyGoalTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71404C821E968EFB004F811A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71404C8E1E968EFC004F811A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		71F5C68D1E9A94FC00C03145 /* EditGoalsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditGoalsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,10 +167,11 @@
 			isa = PBXGroup;
 			children = (
 				711831461E9942F6001E748D /* MainMenuViewController.swift */,
-				711A4BE81E96A89F00A6DA25 /* ManageProgressTableViewCell.swift */,
 				711A4BE91E96A89F00A6DA25 /* ManageProgressViewController.swift */,
+				711A4BE81E96A89F00A6DA25 /* ManageProgressTableViewCell.swift */,
 				711A4BE11E96A89F00A6DA25 /* CalendarViewController.swift */,
 				711A4BE41E96A89F00A6DA25 /* EditGoalsViewController.swift */,
+				71F5C68D1E9A94FC00C03145 /* EditGoalsTableViewCell.swift */,
 				711A4BE71E96A89F00A6DA25 /* Main.storyboard */,
 				711A4BE21E96A89F00A6DA25 /* CellView.swift */,
 				711A4BE31E96A89F00A6DA25 /* CellView.xib */,
@@ -329,6 +332,7 @@
 				71404C831E968EFB004F811A /* AppDelegate.swift in Sources */,
 				711A4BEB1E96A89F00A6DA25 /* AnimationClass.swift in Sources */,
 				711A4BF11E96A89F00A6DA25 /* EditGoalsViewController.swift in Sources */,
+				71F5C68E1E9A94FC00C03145 /* EditGoalsTableViewCell.swift in Sources */,
 				711831471E9942F6001E748D /* MainMenuViewController.swift in Sources */,
 				711831491E9943FB001E748D /* ProgressEnum.swift in Sources */,
 				711A4BF21E96A89F00A6DA25 /* Extensions.swift in Sources */,
