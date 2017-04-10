@@ -11,16 +11,11 @@ import UIKit
 class EditGoalsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var goalTextField: UITextField!
+    @IBOutlet weak var deleteGoalButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        // Configure the view for the selected state
-//    }
 
 }

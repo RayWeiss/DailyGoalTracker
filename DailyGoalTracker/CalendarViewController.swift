@@ -20,11 +20,7 @@ class CalendarViewController: UIViewController, HasMainMenuProtocol {
     
     var numberOfRows = 6
     let formatter = DateFormatter()
-    
-    
     var testCalendar = Calendar.current
-//    var testCalendar = Calendar(identifier: .gregorian)
-
     var generateInDates: InDateCellGeneration = .forAllMonths
     var generateOutDates: OutDateCellGeneration = .tillEndOfGrid
     var prePostVisibility: ((CellState, CellView?)->())?
