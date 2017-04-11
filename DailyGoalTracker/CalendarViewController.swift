@@ -26,30 +26,21 @@ class CalendarViewController: UIViewController, HasMainMenuProtocol {
     var prePostVisibility: ((CellState, CellView?)->())?
     var hasStrictBoundaries = true
     let firstDayOfWeek: DaysOfWeek = .sunday
-    let disabledColor = UIColor.lightGray
-    let enabledColor = UIColor.blue
-    let dateCellSize: CGFloat? = nil
-    var monthSize: MonthSize? = nil
-    var prepostHiddenValue = false
+
     
-    let red = UIColor.red
-    let yellow = UIColor.yellow
-    let green = UIColor.green
-    let blue = UIColor.blue
-    
+    // Colors
     // ffa1a0 - red, ffffa0 - yellow, a0ffa0 - green, a0bfff - blue
     let badColor = UIColor(colorWithHexValue: 0xffa1a0)
     let mediocreColor = UIColor(colorWithHexValue: 0xffffa0)
     let goodColor = UIColor(colorWithHexValue: 0xa0ffa0)
     let todayColor = UIColor(colorWithHexValue: 0xa0bfff)
-
-    
     let white = UIColor.white
     let black = UIColor.black
     let gray = UIColor.gray    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Always scoll to today
         calendarView.scrollToDate(NSDate() as Date)
     }
     
@@ -183,13 +174,5 @@ extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarVi
         self.setupViewsOfCalendar(from: calendarView.visibleDates())
     }
 
-    func sizeOfDecorationView(indexPath: IndexPath) -> CGRect {
-        let stride = calendarView.frame.width * CGFloat(indexPath.section)
-        return CGRect(x: stride + 5, y: 5, width: calendarView.frame.width - 10, height: calendarView.frame.height - 10)
-    }
-    
-    func calendarSizeForMonths(_ calendar: JTAppleCalendarView?) -> MonthSize? {
-        return monthSize
-    }
 }
 
