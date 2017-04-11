@@ -11,8 +11,6 @@ import UIKit
 class ManageProgressViewController: UITableViewController, HasMainMenuProtocol {
     var mainMenuVC: MainMenuViewController?
     
-    @IBOutlet weak var goalsTitleLabel: UILabel!
-    
     let sectionCount = 2
     
     override func viewDidLoad() {
@@ -57,12 +55,6 @@ class ManageProgressViewController: UITableViewController, HasMainMenuProtocol {
         default:
             //old
             let cell = tableView.dequeueReusableCell(withIdentifier: "FinalCell", for: indexPath) as! ManageProgressFinalTableViewCell
-//            // Configure the cell...
-//            cell.goalLabel.text = (mainMenuVC?.goalList[indexPath.row].0)!
-//            cell.goalAccomplished.isOn = (mainMenuVC?.goalList[indexPath.row].1)!
-//            
-//            // set switch tag as index row
-//            cell.goalAccomplished.tag = indexPath.row
             
             return cell
         }

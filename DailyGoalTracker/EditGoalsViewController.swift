@@ -12,6 +12,9 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
 
     var mainMenuVC: MainMenuViewController?
     
+    let sectionCount = 3
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,34 +24,53 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
         let inset = UIEdgeInsetsMake(20, 20, 20, 0)
         self.tableView.contentInset = inset
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return sectionCount
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (mainMenuVC?.goalList.count)!
+        switch section {
+        case 0:
+            return (mainMenuVC?.goalList.count)!
+        default:
+            return 1
+        }
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! EditGoalsTableViewCell
         
-        // Configure the cell...
-        cell.goalTextField.text = (mainMenuVC?.goalList[indexPath.row].0)!
+        switch indexPath.section {
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! EditGoalsTableViewCell
+            
+            // Configure the cell...
+            cell.goalTextField.text = (mainMenuVC?.goalList[indexPath.row].0)!
+            
+            // set tags as index row
+            cell.goalTextField.tag = indexPath.row
+            cell.deleteGoalButton.tag = indexPath.row
+            
+            return cell
+            
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NewCell", for: indexPath) as! EditGoalsNewTableViewCell
+            
+            // set tags as index row
+            cell.newGoalTextField.tag = indexPath.row
+            cell.addButton.tag = indexPath.row
+            
+            return cell
+            
+        default:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "FinalCell", for: indexPath) as! EditGoalsFinalTableViewCell
+            
+            return cell
+        }
         
-        // set tags as index row
-        cell.goalTextField.tag = indexPath.row
-        cell.deleteGoalButton.tag = indexPath.row
-        
-        return cell
     }
     
     @IBAction func editGoal(_ sender: UITextField) {
@@ -60,9 +82,15 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        let path = IndexPath(row: textField.tag, section: 0)
-        let cell = tableView.cellForRow(at: path) as! EditGoalsTableViewCell
-        cell.goalTextField.resignFirstResponder()
+        var path = IndexPath(row: textField.tag, section: 0)
+        if let cell = tableView.cellForRow(at: path) as? EditGoalsTableViewCell {
+            cell.goalTextField.resignFirstResponder()
+        } else {
+            path.section = 1
+        }
+        if let cell = tableView.cellForRow(at: path) as? EditGoalsNewTableViewCell {
+            cell.newGoalTextField.resignFirstResponder()
+        }
 
         return true
     }

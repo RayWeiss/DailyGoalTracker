@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3FC413601E9D2ED000AD95BD /* ManageProgressFinalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC4135F1E9D2ED000AD95BD /* ManageProgressFinalTableViewCell.swift */; };
+		3FC413621E9D349000AD95BD /* EditGoalsNewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC413611E9D349000AD95BD /* EditGoalsNewTableViewCell.swift */; };
+		3FC413641E9D34A800AD95BD /* EditGoalsFinalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC413631E9D34A800AD95BD /* EditGoalsFinalTableViewCell.swift */; };
 		711831471E9942F6001E748D /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711831461E9942F6001E748D /* MainMenuViewController.swift */; };
 		711831491E9943FB001E748D /* ProgressEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711831481E9943FB001E748D /* ProgressEnum.swift */; };
 		7118314D1E995FEC001E748D /* HasMainMenuProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7118314C1E995FEC001E748D /* HasMainMenuProtocol.swift */; };
@@ -69,6 +71,8 @@
 
 /* Begin PBXFileReference section */
 		3FC4135F1E9D2ED000AD95BD /* ManageProgressFinalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageProgressFinalTableViewCell.swift; sourceTree = "<group>"; };
+		3FC413611E9D349000AD95BD /* EditGoalsNewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditGoalsNewTableViewCell.swift; sourceTree = "<group>"; };
+		3FC413631E9D34A800AD95BD /* EditGoalsFinalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditGoalsFinalTableViewCell.swift; sourceTree = "<group>"; };
 		711831461E9942F6001E748D /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		711831481E9943FB001E748D /* ProgressEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressEnum.swift; sourceTree = "<group>"; };
 		7118314C1E995FEC001E748D /* HasMainMenuProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HasMainMenuProtocol.swift; sourceTree = "<group>"; };
@@ -175,6 +179,8 @@
 				711A4BE11E96A89F00A6DA25 /* CalendarViewController.swift */,
 				711A4BE41E96A89F00A6DA25 /* EditGoalsViewController.swift */,
 				71F5C68D1E9A94FC00C03145 /* EditGoalsTableViewCell.swift */,
+				3FC413611E9D349000AD95BD /* EditGoalsNewTableViewCell.swift */,
+				3FC413631E9D34A800AD95BD /* EditGoalsFinalTableViewCell.swift */,
 				711A4BE71E96A89F00A6DA25 /* Main.storyboard */,
 				711A4BE21E96A89F00A6DA25 /* CellView.swift */,
 				711A4BE31E96A89F00A6DA25 /* CellView.xib */,
@@ -337,11 +343,13 @@
 				711A4BEB1E96A89F00A6DA25 /* AnimationClass.swift in Sources */,
 				711A4BF11E96A89F00A6DA25 /* EditGoalsViewController.swift in Sources */,
 				71F5C68E1E9A94FC00C03145 /* EditGoalsTableViewCell.swift in Sources */,
+				3FC413621E9D349000AD95BD /* EditGoalsNewTableViewCell.swift in Sources */,
 				711831471E9942F6001E748D /* MainMenuViewController.swift in Sources */,
 				711831491E9943FB001E748D /* ProgressEnum.swift in Sources */,
 				711A4BF21E96A89F00A6DA25 /* Extensions.swift in Sources */,
 				711A4BF61E96A89F00A6DA25 /* ManageProgressViewController.swift in Sources */,
 				711A4BF51E96A89F00A6DA25 /* ManageProgressTableViewCell.swift in Sources */,
+				3FC413641E9D34A800AD95BD /* EditGoalsFinalTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
