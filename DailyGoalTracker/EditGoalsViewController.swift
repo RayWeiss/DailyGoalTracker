@@ -78,7 +78,10 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
     }
     
     @IBAction func deleteGoal(_ sender: UIButton) {
-        print("delete row \(sender.tag)")
+        let goalIndex = sender.tag
+        mainMenuVC?.goalList.remove(at: goalIndex)
+        tableView.reloadData()
+        print("delete row \(goalIndex)")
     }
     
     @IBAction func addNewGoal(_ sender: UIButton) {
