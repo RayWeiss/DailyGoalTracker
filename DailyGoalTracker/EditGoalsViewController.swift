@@ -49,9 +49,10 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
             
             // Configure the cell...
             cell.goalTextField.text = (mainMenuVC?.goalList[indexPath.row].0)!
-            
+            cell.goalLabel.text = (mainMenuVC?.goalList[indexPath.row].0)!
             // set tags as index row
             cell.goalTextField.tag = indexPath.row
+            cell.goalLabel.tag = indexPath.row
             cell.deleteGoalButton.tag = indexPath.row
             
             return cell
@@ -98,6 +99,8 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
         var path = IndexPath(row: textField.tag, section: 0)
         if let cell = tableView.cellForRow(at: path) as? EditGoalsTableViewCell {
             cell.goalTextField.resignFirstResponder()
+            cell.goalLabel.isHidden = false
+            cell.goalTextField.isHidden = true
         } else {
             path.section = 1
         }
