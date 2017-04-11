@@ -12,6 +12,8 @@ class EditGoalsNewTableViewCell: UITableViewCell {
     
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var newGoalTextField: UITextField!
+    
+    let addGoalText = "Add new goal..."
 
     override func awakeFromNib() {
         super.awakeFromNib()

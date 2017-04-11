@@ -23,7 +23,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JoF-Rd-QYd" id="N2Y-ao-44W">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D2a-mJ-mIP">
@@ -57,7 +57,7 @@
                                 <rect key="frame" x="0.0" y="128" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uhO-y1-iGl" id="9SL-Cr-6WO">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yj8-Hr-CrY">
@@ -89,10 +89,10 @@
             </objects>
             <point key="canvasLocation" x="2797.5999999999999" y="-297.30134932533736"/>
         </scene>
-        <!--My Goals-->
+        <!--Edit My Goals-->
         <scene sceneID="yFC-R8-o2Q">
             <objects>
-                <tableViewController title="My Goals" id="whA-Uc-NOD" customClass="EditGoalsViewController" customModule="DailyGoalTracker" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Edit My Goals" id="whA-Uc-NOD" customClass="EditGoalsViewController" customModule="DailyGoalTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="28" sectionFooterHeight="28" id="Rdf-up-tXx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -102,7 +102,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hel-9Y-in5" id="8NQ-hN-ix5">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pou-u9-lT0">
@@ -142,6 +142,9 @@
                                             <rect key="frame" x="306" y="34" width="61" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Add"/>
+                                            <connections>
+                                                <action selector="addNewGoal:" destination="whA-Uc-NOD" eventType="touchUpInside" id="sbn-kb-46n"/>
+                                            </connections>
                                         </button>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Add new goal..." borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EVC-fh-ovx">
                                             <rect key="frame" x="8" y="19" width="290" height="60"/>
@@ -190,7 +193,7 @@
                             <outlet property="delegate" destination="whA-Uc-NOD" id="cQt-7n-6as"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="My Goals" id="XTz-WS-DMs"/>
+                    <navigationItem key="navigationItem" title="Edit My Goals" id="XTz-WS-DMs"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OF2-pz-E6P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -396,14 +399,6 @@
                                 <state key="normal" title="04/08 to bad"/>
                                 <connections>
                                     <action selector="testFunc:" destination="BYZ-38-t0r" eventType="touchUpInside" id="v4s-bl-tIA"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zT1-Pj-idZ">
-                                <rect key="frame" x="251" y="501" width="82" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="AddGoal"/>
-                                <connections>
-                                    <action selector="testFunc2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Yzf-UA-A9y"/>
                                 </connections>
                             </button>
                         </subviews>

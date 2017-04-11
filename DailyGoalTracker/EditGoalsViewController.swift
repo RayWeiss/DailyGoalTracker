@@ -81,6 +81,16 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
         print("delete row \(sender.tag)")
     }
     
+    @IBAction func addNewGoal(_ sender: UIButton) {
+        let path = IndexPath(row: 0, section: 1)
+        if let cell = tableView.cellForRow(at: path) as? EditGoalsNewTableViewCell {
+            let newGoal = cell.newGoalTextField.text
+            mainMenuVC?.goalList.append((newGoal!,false))
+            cell.newGoalTextField.text = cell.addGoalText
+            tableView.reloadData()
+        }
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         var path = IndexPath(row: textField.tag, section: 0)
         if let cell = tableView.cellForRow(at: path) as? EditGoalsTableViewCell {

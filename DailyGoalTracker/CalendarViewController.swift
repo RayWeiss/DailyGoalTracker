@@ -109,9 +109,6 @@ class CalendarViewController: UIViewController, HasMainMenuProtocol {
         calendarView.reloadData()
     }
     
-    @IBAction func testFunc2(_ sender: UIButton) {
-        mainMenuVC?.goalList.append(("Go to bed at 10:00 pm",false))
-    }
 }
 
 // MARK : JTAppleCalendarDelegate
