@@ -52,8 +52,8 @@ class ManageProgressViewController: UITableViewController, HasMainMenuProtocol {
             cell.goalAccomplished.tag = indexPath.row
             
             return cell
+            
         default:
-            //old
             let cell = tableView.dequeueReusableCell(withIdentifier: "FinalCell", for: indexPath) as! ManageProgressFinalTableViewCell
             
             return cell

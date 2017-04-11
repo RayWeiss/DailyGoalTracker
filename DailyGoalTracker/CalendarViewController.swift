@@ -18,6 +18,7 @@ class CalendarViewController: UIViewController, HasMainMenuProtocol {
     @IBOutlet var monthLabel: UILabel!
     @IBOutlet weak var weekViewStack: UIStackView!
     
+    
     var numberOfRows = 6
     let formatter = DateFormatter()
     var testCalendar = Calendar.current
@@ -27,6 +28,12 @@ class CalendarViewController: UIViewController, HasMainMenuProtocol {
     var hasStrictBoundaries = true
     let firstDayOfWeek: DaysOfWeek = .sunday
 
+    
+    
+    @IBOutlet weak var badPreformanceLabel: UILabel!
+    @IBOutlet weak var mediocrePredormanceLabel: UILabel!
+    @IBOutlet weak var goodPreformanceLabel: UILabel!
+    
     
     // Colors
     // ffa1a0 - red, ffffa0 - yellow, a0ffa0 - green, a0bfff - blue
@@ -42,6 +49,10 @@ class CalendarViewController: UIViewController, HasMainMenuProtocol {
         super.viewDidLoad()
         // Always scoll to today
         calendarView.scrollToDate(NSDate() as Date)
+        
+        badPreformanceLabel.backgroundColor = badColor
+        mediocrePredormanceLabel.backgroundColor = mediocreColor
+        goodPreformanceLabel.backgroundColor = goodColor
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -101,12 +112,6 @@ class CalendarViewController: UIViewController, HasMainMenuProtocol {
         } else {
             myCustomCell.dayLabel.textColor = gray
         }
-    }
-    
-    
-    @IBAction func testFunc(_ sender: UIButton) {
-        mainMenuVC?.ProgressHistory[1362566470642084800] = .bad
-        calendarView.reloadData()
     }
     
 }
