@@ -18,6 +18,14 @@ class EditGoalsTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    func setTitleBlackLeft(withString title: String) {
+        let blackFontAttribute = [NSForegroundColorAttributeName: UIColor.black]
+        let attributedGoalString = NSAttributedString(string: title, attributes: blackFontAttribute)
+        
+        goalLabelButton.setAttributedTitle(attributedGoalString, for: .normal)
+        goalLabelButton.contentHorizontalAlignment = .left
+    }
 }
 
 

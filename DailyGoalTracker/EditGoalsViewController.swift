@@ -49,15 +49,7 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
             
             // Configure the cell...
             cell.goalTextField.text = (mainMenuVC?.goalList[indexPath.row].0)!
-
-            // set attributed title
-            let goalString = (mainMenuVC?.goalList[indexPath.row].0)!
-            
-            let blackFontAttribute = [NSForegroundColorAttributeName: UIColor.black]
-            let attributedGoalString = NSAttributedString(string: goalString, attributes: blackFontAttribute)
-            
-            cell.goalLabelButton.setAttributedTitle(attributedGoalString, for: .normal)
-            cell.goalLabelButton.contentHorizontalAlignment = .left
+            cell.setTitleBlackLeft(withString: (mainMenuVC?.goalList[indexPath.row].0)!)
             
             // set tags as index row
             cell.goalTextField.tag = indexPath.row
@@ -89,10 +81,19 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
         if let cell = tableView.cellForRow(at: path) as? EditGoalsTableViewCell {
             cell.goalLabelButton.isHidden = true
             cell.goalTextField.isHidden = false
+            cell.goalTextField.becomeFirstResponder()
         }
     }
+    
     @IBAction func editGoal(_ sender: UITextField) {
-        mainMenuVC?.goalList[sender.tag] = (sender.text!,false)
+        let goalIndex = sender.tag
+        let path = IndexPath(row: goalIndex, section: 0)
+        if let cell = tableView.cellForRow(at: path) as? EditGoalsTableViewCell {
+            cell.setTitleBlackLeft(withString: sender.text!)
+        }
+        
+        // Update goal list
+        mainMenuVC?.goalList[goalIndex] = (sender.text!,false)
     }
     
     @IBAction func deleteGoal(_ sender: UIButton) {
