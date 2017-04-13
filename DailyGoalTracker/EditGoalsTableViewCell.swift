@@ -12,22 +12,11 @@ class EditGoalsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var goalTextField: UITextField!
     @IBOutlet weak var deleteGoalButton: UIButton!
-    @IBOutlet weak var goalLabel: UILabel!
+    @IBOutlet weak var goalLabelButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        let aSelector : Selector = #selector(EditGoalsTableViewCell.goalLabelTapped)
-        let tapGesture = UITapGestureRecognizer(target: self, action: aSelector)
-        tapGesture.numberOfTapsRequired = 1
-        goalLabel.addGestureRecognizer(tapGesture)
-        
-        
-    }
-
-    func goalLabelTapped(){
-        goalLabel.isHidden = true
-        goalTextField.isHidden = false
     }
 }
 

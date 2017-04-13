@@ -49,11 +49,20 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
             
             // Configure the cell...
             cell.goalTextField.text = (mainMenuVC?.goalList[indexPath.row].0)!
-            cell.goalLabel.text = (mainMenuVC?.goalList[indexPath.row].0)!
+
+            // set attributed title
+            let goalString = (mainMenuVC?.goalList[indexPath.row].0)!
+            
+            let blackFontAttribute = [NSForegroundColorAttributeName: UIColor.black]
+            let attributedGoalString = NSAttributedString(string: goalString, attributes: blackFontAttribute)
+            
+            cell.goalLabelButton.setAttributedTitle(attributedGoalString, for: .normal)
+            cell.goalLabelButton.contentHorizontalAlignment = .left
+            
             // set tags as index row
             cell.goalTextField.tag = indexPath.row
-            cell.goalLabel.tag = indexPath.row
             cell.deleteGoalButton.tag = indexPath.row
+            cell.goalLabelButton.tag = indexPath.row
             
             return cell
             
@@ -74,6 +83,14 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
         
     }
     
+    @IBAction func goalLabelButtonPressed(_ sender: UIButton) {
+        let goalIndex = sender.tag
+        let path = IndexPath(row: goalIndex, section: 0)
+        if let cell = tableView.cellForRow(at: path) as? EditGoalsTableViewCell {
+            cell.goalLabelButton.isHidden = true
+            cell.goalTextField.isHidden = false
+        }
+    }
     @IBAction func editGoal(_ sender: UITextField) {
         mainMenuVC?.goalList[sender.tag] = (sender.text!,false)
     }
@@ -98,9 +115,9 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         var path = IndexPath(row: textField.tag, section: 0)
         if let cell = tableView.cellForRow(at: path) as? EditGoalsTableViewCell {
-            cell.goalTextField.resignFirstResponder()
-            cell.goalLabel.isHidden = false
+            cell.goalLabelButton.isHidden = false
             cell.goalTextField.isHidden = true
+            cell.goalTextField.resignFirstResponder()
         } else {
             path.section = 1
         }
