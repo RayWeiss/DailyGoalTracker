@@ -148,7 +148,7 @@
                                                 <action selector="addNewGoal:" destination="whA-Uc-NOD" eventType="touchUpInside" id="sbn-kb-46n"/>
                                             </connections>
                                         </button>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Add new goal..." borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EVC-fh-ovx">
+                                        <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EVC-fh-ovx">
                                             <rect key="frame" x="8" y="19" width="290" height="60"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <nil key="textColor"/>
@@ -158,10 +158,18 @@
                                                 <outlet property="delegate" destination="whA-Uc-NOD" id="NBP-ea-OPr"/>
                                             </connections>
                                         </textField>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IOm-2b-hHn">
+                                            <rect key="frame" x="8" y="19" width="290" height="60"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <connections>
+                                                <action selector="newGoalLabelButtonPressed:" destination="whA-Uc-NOD" eventType="touchUpInside" id="y1L-kB-ap3"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="addButton" destination="VSq-qU-1w8" id="kkz-CR-izx"/>
+                                    <outlet property="newGoalLabelButton" destination="IOm-2b-hHn" id="nl9-L2-uxE"/>
                                     <outlet property="newGoalTextField" destination="EVC-fh-ovx" id="v4g-OL-Emd"/>
                                 </connections>
                             </tableViewCell>

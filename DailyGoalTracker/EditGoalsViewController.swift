@@ -61,9 +61,13 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewCell", for: indexPath) as! EditGoalsNewTableViewCell
             
+            // configure the cell
+            cell.setTitleBlackLeft(withString: cell.addGoalText)
+            
             // set tags as index row
             cell.newGoalTextField.tag = indexPath.row
             cell.addButton.tag = indexPath.row
+            cell.newGoalLabelButton.tag = indexPath.row
             
             return cell
             
@@ -73,6 +77,16 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
             return cell
         }
         
+    }
+    
+    @IBAction func newGoalLabelButtonPressed(_ sender: UIButton) {
+        let goalIndex = sender.tag
+        let path = IndexPath(row: goalIndex, section: 1)
+        if let cell = tableView.cellForRow(at: path) as? EditGoalsNewTableViewCell {
+            cell.newGoalLabelButton.isHidden = true
+            cell.newGoalTextField.isHidden = false
+            cell.newGoalTextField.becomeFirstResponder()
+        }
     }
     
     @IBAction func goalLabelButtonPressed(_ sender: UIButton) {
@@ -89,11 +103,15 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
         let goalIndex = sender.tag
         let path = IndexPath(row: goalIndex, section: 0)
         if let cell = tableView.cellForRow(at: path) as? EditGoalsTableViewCell {
-            cell.setTitleBlackLeft(withString: sender.text!)
+            if let textFieldText = sender.text {
+                if !textFieldText.isEmpty {
+                    cell.setTitleBlackLeft(withString: textFieldText)
+                    
+                    // Update goal list
+                    mainMenuVC?.goalList[goalIndex] = (textFieldText,false)
+                }
+            }
         }
-        
-        // Update goal list
-        mainMenuVC?.goalList[goalIndex] = (sender.text!,false)
     }
     
     @IBAction func deleteGoal(_ sender: UIButton) {
@@ -107,9 +125,13 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
         let path = IndexPath(row: 0, section: 1)
         if let cell = tableView.cellForRow(at: path) as? EditGoalsNewTableViewCell {
             let newGoal = cell.newGoalTextField.text
-            mainMenuVC?.goalList.append((newGoal!,false))
-            cell.newGoalTextField.text = cell.addGoalText
-            tableView.reloadData()
+            if !(newGoal?.isEmpty)! {
+                mainMenuVC?.goalList.append((newGoal!,false))
+//                cell.newGoalTextField.text = cell.addGoalText
+                cell.newGoalTextField.text = nil
+
+                tableView.reloadData()
+            }
         }
     }
     
@@ -119,13 +141,23 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
             cell.goalLabelButton.isHidden = false
             cell.goalTextField.isHidden = true
             cell.goalTextField.resignFirstResponder()
+            print("editGoal resigning")
         } else {
             path.section = 1
         }
         if let cell = tableView.cellForRow(at: path) as? EditGoalsNewTableViewCell {
+            if (textField.text?.isEmpty)! {
+                cell.setTitleBlackLeft(withString: cell.addGoalText)
+            } else {
+                cell.setTitleBlackLeft(withString: textField.text!)
+            }
+            cell.newGoalTextField.isHidden = true
+            cell.newGoalLabelButton.isHidden = false
             cell.newGoalTextField.resignFirstResponder()
-        }
+            print("newGoal resigning")
 
+        }
+        print("textFieldShouldReturn")
         return true
     }
 }
