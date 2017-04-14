@@ -9,6 +9,8 @@
 import UIKit
 
 class EditGoalsTableViewCell: UITableViewCell {
+    
+    private static let tester = false
 
     @IBOutlet weak var goalTextField: UITextField!
     @IBOutlet weak var deleteGoalButton: UIButton!

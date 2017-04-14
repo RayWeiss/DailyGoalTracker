@@ -63,6 +63,7 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
             
             // configure the cell
             cell.setTitleBlackLeft(withString: cell.addGoalText)
+            cell.newGoalTextField.text = nil
             
             // set tags as index row
             cell.newGoalTextField.tag = indexPath.row
@@ -114,23 +115,32 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
         }
     }
     
+    @IBAction func editNewGoal(_ sender: UITextField) {
+        let path = IndexPath(row: 0, section: 1)
+        if let cell = tableView.cellForRow(at: path) as? EditGoalsNewTableViewCell {
+            if let textFieldText = sender.text {
+                if !textFieldText.isEmpty {
+                    cell.setTitleBlackLeft(withString: textFieldText)
+                }
+            }
+        }
+    }
+    
     @IBAction func deleteGoal(_ sender: UIButton) {
         let goalIndex = sender.tag
         mainMenuVC?.goalList.remove(at: goalIndex)
         tableView.reloadData()
-        print("delete row \(goalIndex)")
     }
     
     @IBAction func addNewGoal(_ sender: UIButton) {
         let path = IndexPath(row: 0, section: 1)
         if let cell = tableView.cellForRow(at: path) as? EditGoalsNewTableViewCell {
-            let newGoal = cell.newGoalTextField.text
-            if !(newGoal?.isEmpty)! {
-                mainMenuVC?.goalList.append((newGoal!,false))
-//                cell.newGoalTextField.text = cell.addGoalText
-                cell.newGoalTextField.text = nil
-
-                tableView.reloadData()
+            if let newGoal = cell.newGoalTextField.text {
+                if !newGoal.isEmpty {
+                    mainMenuVC?.goalList.append((newGoal,false))
+                    cell.newGoalTextField.text = nil
+                    tableView.reloadData()
+                }
             }
         }
     }
@@ -141,23 +151,15 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
             cell.goalLabelButton.isHidden = false
             cell.goalTextField.isHidden = true
             cell.goalTextField.resignFirstResponder()
-            print("editGoal resigning")
-        } else {
-            path.section = 1
         }
+        
+        path = IndexPath(row: 0, section: 1)
         if let cell = tableView.cellForRow(at: path) as? EditGoalsNewTableViewCell {
-            if (textField.text?.isEmpty)! {
-                cell.setTitleBlackLeft(withString: cell.addGoalText)
-            } else {
-                cell.setTitleBlackLeft(withString: textField.text!)
-            }
             cell.newGoalTextField.isHidden = true
             cell.newGoalLabelButton.isHidden = false
             cell.newGoalTextField.resignFirstResponder()
-            print("newGoal resigning")
-
         }
-        print("textFieldShouldReturn")
+        
         return true
     }
 }
