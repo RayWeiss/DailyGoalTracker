@@ -107,7 +107,6 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
             if let textFieldText = sender.text {
                 if !textFieldText.isEmpty {
                     cell.setTitleBlackLeft(withString: textFieldText)
-                    
                     // Update goal list
                     mainMenuVC?.goalList[goalIndex] = (textFieldText,false)
                 }
