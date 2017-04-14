@@ -10,14 +10,11 @@
 
 import JTAppleCalendar
 
-class CalendarViewController: UIViewController, HasMainMenuProtocol {
-    
-    var mainMenuVC: MainMenuViewController?
+class CalendarViewController: UIViewController {
     
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     @IBOutlet var monthLabel: UILabel!
     @IBOutlet weak var weekViewStack: UIStackView!
-    
     
     var numberOfRows = 6
     let formatter = DateFormatter()
@@ -27,32 +24,22 @@ class CalendarViewController: UIViewController, HasMainMenuProtocol {
     var prePostVisibility: ((CellState, CellView?)->())?
     var hasStrictBoundaries = true
     let firstDayOfWeek: DaysOfWeek = .sunday
-
+    let disabledColor = UIColor.lightGray
+    let enabledColor = UIColor.blue
+    let dateCellSize: CGFloat? = nil
+    var monthSize: MonthSize? = nil
+    var prepostHiddenValue = false
     
-    
-    @IBOutlet weak var badPreformanceLabel: UILabel!
-    @IBOutlet weak var mediocrePredormanceLabel: UILabel!
-    @IBOutlet weak var goodPreformanceLabel: UILabel!
-    
-    
-    // Colors
-    // ffa1a0 - red, ffffa0 - yellow, a0ffa0 - green, a0bfff - blue
-    let badColor = UIColor(colorWithHexValue: 0xffa1a0)
-    let mediocreColor = UIColor(colorWithHexValue: 0xffffa0)
-    let goodColor = UIColor(colorWithHexValue: 0xa0ffa0)
-    let todayColor = UIColor(colorWithHexValue: 0xa0bfff)
+    let red = UIColor.red
     let white = UIColor.white
     let black = UIColor.black
-    let gray = UIColor.gray    
+    let gray = UIColor.gray
+    let shade = UIColor(colorWithHexValue: 0x4E4E4E)
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Always scoll to today
         calendarView.scrollToDate(NSDate() as Date)
-        
-        badPreformanceLabel.backgroundColor = badColor
-        mediocrePredormanceLabel.backgroundColor = mediocreColor
-        goodPreformanceLabel.backgroundColor = goodColor
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -97,6 +84,7 @@ class CalendarViewController: UIViewController, HasMainMenuProtocol {
     }
     
     func handleCellConfiguration(cell: JTAppleCell?, cellState: CellState) {
+        handleCellSelection(view: cell, cellState: cellState)
         handleCellTextColor(view: cell, cellState: cellState)
         prePostVisibility?(cellState, cell as? CellView)
     }
@@ -106,11 +94,39 @@ class CalendarViewController: UIViewController, HasMainMenuProtocol {
         guard let myCustomCell = view as? CellView  else {
             return
         }
-
-        if cellState.dateBelongsTo == .thisMonth {
-            myCustomCell.dayLabel.textColor = black
+        
+        if cellState.isSelected {
+            myCustomCell.dayLabel.textColor = white
         } else {
-            myCustomCell.dayLabel.textColor = gray
+            if cellState.dateBelongsTo == .thisMonth {
+                myCustomCell.dayLabel.textColor = black
+            } else {
+                myCustomCell.dayLabel.textColor = gray
+            }
+        }
+    }
+    
+    // Function to handle the calendar selection
+    func handleCellSelection(view: JTAppleCell?, cellState: CellState) {
+        guard let myCustomCell = view as? CellView else {return }
+//                switch cellState.selectedPosition() {
+//                case .full:
+//                    myCustomCell.backgroundColor = .green
+//                case .left:
+//                    myCustomCell.backgroundColor = .yellow
+//                case .right:
+//                    myCustomCell.backgroundColor = .red
+//                case .middle:
+//                    myCustomCell.backgroundColor = .blue
+//                case .none:
+//                    myCustomCell.backgroundColor = nil
+//                }
+//        
+        if cellState.isSelected {
+            myCustomCell.selectedView.layer.cornerRadius =  13
+            myCustomCell.selectedView.isHidden = false
+        } else {
+            myCustomCell.selectedView.isHidden = true
         }
     }
     
@@ -144,28 +160,22 @@ extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarVi
         let myCustomCell = calendar.dequeueReusableCell(withReuseIdentifier: "CellView", for: indexPath) as! CellView
         
         myCustomCell.dayLabel.text = cellState.text
-        
-        if let progress = mainMenuVC?.ProgressHistory[date.hashValue] {
-            switch progress {
-            case .bad:
-                myCustomCell.backgroundColor = badColor
-
-            case .mediocre:
-                myCustomCell.backgroundColor = mediocreColor
-
-            case .good:
-                myCustomCell.backgroundColor = goodColor
-            }
+        if testCalendar.isDateInToday(date) {
+            myCustomCell.backgroundColor = red
         } else {
             myCustomCell.backgroundColor = white
         }
         
-        if testCalendar.isDateInToday(date) {
-            myCustomCell.backgroundColor = todayColor
-        }
-        
         handleCellConfiguration(cell: myCustomCell, cellState: cellState)
         return myCustomCell
+    }
+    
+    func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
+        handleCellConfiguration(cell: cell, cellState: cellState)
+    }
+    
+    func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
+        handleCellConfiguration(cell: cell, cellState: cellState)
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
@@ -176,5 +186,13 @@ extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarVi
         self.setupViewsOfCalendar(from: calendarView.visibleDates())
     }
 
+    func sizeOfDecorationView(indexPath: IndexPath) -> CGRect {
+        let stride = calendarView.frame.width * CGFloat(indexPath.section)
+        return CGRect(x: stride + 5, y: 5, width: calendarView.frame.width - 10, height: calendarView.frame.height - 10)
+    }
+    
+    func calendarSizeForMonths(_ calendar: JTAppleCalendarView?) -> MonthSize? {
+        return monthSize
+    }
 }
 
