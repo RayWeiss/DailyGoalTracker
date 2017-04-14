@@ -187,11 +187,17 @@
                                             <rect key="frame" x="8" y="34" width="120" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Make Changes"/>
+                                            <connections>
+                                                <action selector="makeChangesPressed:" destination="whA-Uc-NOD" eventType="touchUpInside" id="ows-kV-Bft"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DTt-Eq-lnS">
                                             <rect key="frame" x="247" y="34" width="120" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Revert Changes"/>
+                                            <connections>
+                                                <action selector="revertChangesPressed:" destination="whA-Uc-NOD" eventType="touchUpInside" id="z0w-rN-YRT"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </tableViewCellContentView>

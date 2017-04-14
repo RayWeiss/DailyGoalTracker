@@ -241,4 +241,13 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
         }
     }
     
+    @IBAction func makeChangesPressed(_ sender: UIButton) {
+        print("makeChangesPressed")
+    }
+    
+    @IBAction func revertChangesPressed(_ sender: UIButton) {
+        print("revertChangesPressed")
+
+    }
+    
 }
