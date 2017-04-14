@@ -18,6 +18,7 @@ class CalendarViewController: UIViewController, HasMainMenuProtocol {
     @IBOutlet var monthLabel: UILabel!
     @IBOutlet weak var weekViewStack: UIStackView!
     
+    
     var numberOfRows = 6
     let formatter = DateFormatter()
     var testCalendar = Calendar.current
@@ -26,31 +27,32 @@ class CalendarViewController: UIViewController, HasMainMenuProtocol {
     var prePostVisibility: ((CellState, CellView?)->())?
     var hasStrictBoundaries = true
     let firstDayOfWeek: DaysOfWeek = .sunday
-    let disabledColor = UIColor.lightGray
-    let enabledColor = UIColor.blue
-    let dateCellSize: CGFloat? = nil
-    var monthSize: MonthSize? = nil
-    var prepostHiddenValue = false
+
     
-    let red = UIColor.red
-    let yellow = UIColor.yellow
-    let green = UIColor.green
-    let blue = UIColor.blue
     
+    @IBOutlet weak var badPreformanceLabel: UILabel!
+    @IBOutlet weak var mediocrePredormanceLabel: UILabel!
+    @IBOutlet weak var goodPreformanceLabel: UILabel!
+    
+    
+    // Colors
     // ffa1a0 - red, ffffa0 - yellow, a0ffa0 - green, a0bfff - blue
     let badColor = UIColor(colorWithHexValue: 0xffa1a0)
     let mediocreColor = UIColor(colorWithHexValue: 0xffffa0)
     let goodColor = UIColor(colorWithHexValue: 0xa0ffa0)
     let todayColor = UIColor(colorWithHexValue: 0xa0bfff)
-
-    
     let white = UIColor.white
     let black = UIColor.black
     let gray = UIColor.gray    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Always scoll to today
         calendarView.scrollToDate(NSDate() as Date)
+        
+        badPreformanceLabel.backgroundColor = badColor
+        mediocrePredormanceLabel.backgroundColor = mediocreColor
+        goodPreformanceLabel.backgroundColor = goodColor
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -112,15 +114,6 @@ class CalendarViewController: UIViewController, HasMainMenuProtocol {
         }
     }
     
-    
-    @IBAction func testFunc(_ sender: UIButton) {
-        mainMenuVC?.ProgressHistory[1362566470642084800] = .bad
-        calendarView.reloadData()
-    }
-    
-    @IBAction func testFunc2(_ sender: UIButton) {
-        mainMenuVC?.goalList.append(("Go to bed at 10:00 pm",false))
-    }
 }
 
 // MARK : JTAppleCalendarDelegate
@@ -183,13 +176,5 @@ extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarVi
         self.setupViewsOfCalendar(from: calendarView.visibleDates())
     }
 
-    func sizeOfDecorationView(indexPath: IndexPath) -> CGRect {
-        let stride = calendarView.frame.width * CGFloat(indexPath.section)
-        return CGRect(x: stride + 5, y: 5, width: calendarView.frame.width - 10, height: calendarView.frame.height - 10)
-    }
-    
-    func calendarSizeForMonths(_ calendar: JTAppleCalendarView?) -> MonthSize? {
-        return monthSize
-    }
 }
 
