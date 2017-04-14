@@ -107,6 +107,13 @@
                                                 <action selector="deleteGoal:" destination="whA-Uc-NOD" eventType="touchUpInside" id="ueq-Dx-W0s"/>
                                             </connections>
                                         </button>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e2v-vh-yPn">
+                                            <rect key="frame" x="8" y="20" width="290" height="60"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <connections>
+                                                <action selector="goalLabelButtonPressed:" destination="whA-Uc-NOD" eventType="touchUpInside" id="EAP-c8-h2k"/>
+                                            </connections>
+                                        </button>
                                         <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pou-u9-lT0">
                                             <rect key="frame" x="8" y="20" width="290" height="60"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -115,16 +122,10 @@
                                             <textInputTraits key="textInputTraits"/>
                                             <connections>
                                                 <action selector="editGoal:" destination="whA-Uc-NOD" eventType="editingDidEnd" id="pDg-ul-owo"/>
+                                                <action selector="editGoalDisableButtons:" destination="whA-Uc-NOD" eventType="editingDidBegin" id="fLQ-4V-out"/>
                                                 <outlet property="delegate" destination="whA-Uc-NOD" id="eu6-QA-s6V"/>
                                             </connections>
                                         </textField>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e2v-vh-yPn">
-                                            <rect key="frame" x="8" y="20" width="290" height="60"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <connections>
-                                                <action selector="goalLabelButtonPressed:" destination="whA-Uc-NOD" eventType="touchUpInside" id="EAP-c8-h2k"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
@@ -148,6 +149,13 @@
                                                 <action selector="addNewGoal:" destination="whA-Uc-NOD" eventType="touchUpInside" id="sbn-kb-46n"/>
                                             </connections>
                                         </button>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IOm-2b-hHn">
+                                            <rect key="frame" x="8" y="19" width="290" height="60"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <connections>
+                                                <action selector="newGoalLabelButtonPressed:" destination="whA-Uc-NOD" eventType="touchUpInside" id="y1L-kB-ap3"/>
+                                            </connections>
+                                        </button>
                                         <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EVC-fh-ovx">
                                             <rect key="frame" x="8" y="19" width="290" height="60"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -156,16 +164,10 @@
                                             <textInputTraits key="textInputTraits"/>
                                             <connections>
                                                 <action selector="editNewGoal:" destination="whA-Uc-NOD" eventType="editingDidEnd" id="1qO-4m-KCi"/>
+                                                <action selector="editNewGoalDisableButtons:" destination="whA-Uc-NOD" eventType="editingDidBegin" id="Pff-sp-Gfv"/>
                                                 <outlet property="delegate" destination="whA-Uc-NOD" id="NBP-ea-OPr"/>
                                             </connections>
                                         </textField>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IOm-2b-hHn">
-                                            <rect key="frame" x="8" y="19" width="290" height="60"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <connections>
-                                                <action selector="newGoalLabelButtonPressed:" destination="whA-Uc-NOD" eventType="touchUpInside" id="y1L-kB-ap3"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>

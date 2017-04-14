@@ -150,6 +150,9 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
         if let cell = tableView.cellForRow(at: path) as? EditGoalsTableViewCell {
             cell.goalLabelButton.isHidden = false
             cell.goalTextField.isHidden = true
+            cell.deleteGoalButton.isUserInteractionEnabled = true
+            cell.goalLabelButton.isUserInteractionEnabled = true
+            print("renabled current cell buttons")
             cell.goalTextField.resignFirstResponder()
         }
         
@@ -157,9 +160,85 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
         if let cell = tableView.cellForRow(at: path) as? EditGoalsNewTableViewCell {
             cell.newGoalTextField.isHidden = true
             cell.newGoalLabelButton.isHidden = false
+            cell.addButton.isUserInteractionEnabled = true
+            cell.newGoalLabelButton.isUserInteractionEnabled = true
+            print("renabled current cell buttons")
             cell.newGoalTextField.resignFirstResponder()
+        }
+        
+        let sectionCount = tableView.numberOfSections
+        for sectionIndex in 0..<sectionCount {
+            let rowCount = tableView.numberOfRows(inSection: sectionIndex)
+            for rowIndex in 0..<rowCount {
+                let path = IndexPath(row: rowIndex, section: sectionIndex)
+                if let cell = tableView.cellForRow(at: path) {
+                    cell.isUserInteractionEnabled = true
+                    print("reenabled cell interaction")
+                }
+            }
         }
         
         return true
     }
+    
+    @IBAction func editGoalDisableButtons(_ sender: UITextField) {
+        let currentRow = sender.tag
+        let currentSection = 0
+        let currentPath = IndexPath(row: currentRow, section: currentSection)
+        
+        let sectionCount = tableView.numberOfSections
+        
+        for sectionIndex in 0..<sectionCount {
+            let rowCount = tableView.numberOfRows(inSection: sectionIndex)
+            
+            for rowIndex in 0..<rowCount {
+                let path = IndexPath(row: rowIndex, section: sectionIndex)
+                if let cell = tableView.cellForRow(at: path) {
+                    if path == currentPath {
+                        if let currentCell = cell as? EditGoalsTableViewCell {
+                            currentCell.deleteGoalButton.isUserInteractionEnabled = false
+                            currentCell.goalLabelButton.isUserInteractionEnabled = false
+                            print("disabled current cell buttons")
+                        } else {
+                            print("did not disable current cell buttons")
+                        }
+                    } else {
+                        cell.isUserInteractionEnabled = false
+                        print("disabled cell interaction")
+                    }
+                }
+            }
+        }
+    }
+    
+    @IBAction func editNewGoalDisableButtons(_ sender: UITextField) {
+        let currentRow = sender.tag
+        let currentSection = 1
+        let currentPath = IndexPath(row: currentRow, section: currentSection)
+        
+        let sectionCount = tableView.numberOfSections
+        
+        for sectionIndex in 0..<sectionCount {
+            let rowCount = tableView.numberOfRows(inSection: sectionIndex)
+            
+            for rowIndex in 0..<rowCount {
+                let path = IndexPath(row: rowIndex, section: sectionIndex)
+                if let cell = tableView.cellForRow(at: path) {
+                    if path == currentPath {
+                        if let currentCell = cell as? EditGoalsNewTableViewCell {
+                            currentCell.addButton.isUserInteractionEnabled = false
+                            currentCell.newGoalLabelButton.isUserInteractionEnabled = false
+                            print("disabled current cell buttons")
+                        } else {
+                            print("did not disable current cell buttons")
+                        }
+                    } else {
+                        cell.isUserInteractionEnabled = false
+                        print("disabled cell interaction")
+                    }
+                }
+            }
+        }
+    }
+    
 }
