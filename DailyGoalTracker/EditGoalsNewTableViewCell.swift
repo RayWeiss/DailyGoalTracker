@@ -12,6 +12,7 @@ class EditGoalsNewTableViewCell: UITableViewCell {
     
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var newGoalTextField: UITextField!
+    @IBOutlet weak var newGoalLabelButton: UIButton!
     
     let addGoalText = "Add new goal..."
 
@@ -19,5 +20,12 @@ class EditGoalsNewTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
+    func setTitleBlackLeft(withString title: String) {
+        let blackFontAttribute = [NSForegroundColorAttributeName: UIColor.black]
+        let attributedGoalString = NSAttributedString(string: title, attributes: blackFontAttribute)
+        
+        newGoalLabelButton.setAttributedTitle(attributedGoalString, for: .normal)
+        newGoalLabelButton.contentHorizontalAlignment = .left
+    }
 }
