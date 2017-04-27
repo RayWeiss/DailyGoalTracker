@@ -48,8 +48,8 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! EditGoalsTableViewCell
             
             // Configure the cell...
-            cell.goalTextField.text = (mainMenuVC?.goalList[indexPath.row].0)!
-            cell.setTitleBlackLeft(withString: (mainMenuVC?.goalList[indexPath.row].0)!)
+            cell.goalTextField.text = (mainMenuVC?.goalList[indexPath.row].text)!
+            cell.setTitleBlackLeft(withString: (mainMenuVC?.goalList[indexPath.row].text)!)
             
             // set tags as index row
             cell.goalTextField.tag = indexPath.row
@@ -109,7 +109,7 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
                     cell.setTitleBlackLeft(withString: textFieldText)
                     
                     // Update goal list
-                    mainMenuVC?.goalList[goalIndex] = (textFieldText,false)
+                    mainMenuVC?.goalList[goalIndex] = Goal(desc: textFieldText, done: false)
                 }
             }
         }
@@ -137,7 +137,7 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
         if let cell = tableView.cellForRow(at: path) as? EditGoalsNewTableViewCell {
             if let newGoal = cell.newGoalTextField.text {
                 if !newGoal.isEmpty {
-                    mainMenuVC?.goalList.append((newGoal,false))
+                    mainMenuVC?.goalList.append(Goal(desc: newGoal,done: false))
                     cell.newGoalTextField.text = nil
                     tableView.reloadData()
                 }

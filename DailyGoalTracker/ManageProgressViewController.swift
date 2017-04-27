@@ -45,8 +45,8 @@ class ManageProgressViewController: UITableViewController, HasMainMenuProtocol {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ManageProgressTableViewCell
             // Configure the cell...
-            cell.goalLabel.text = (mainMenuVC?.goalList[indexPath.row].0)!
-            cell.goalAccomplished.isOn = (mainMenuVC?.goalList[indexPath.row].1)!
+            cell.goalLabel.text = (mainMenuVC?.goalList[indexPath.row].text)!
+            cell.goalAccomplished.isOn = (mainMenuVC?.goalList[indexPath.row].isCompleted)!
             
             // set switch tag as index row
             cell.goalAccomplished.tag = indexPath.row
@@ -63,7 +63,7 @@ class ManageProgressViewController: UITableViewController, HasMainMenuProtocol {
     
     @IBAction func toggleGoalSwitch(_ sender: UISwitch) {
         let switchIndex = sender.tag
-        mainMenuVC?.goalList[switchIndex].1  = !(mainMenuVC?.goalList[switchIndex].1)!
+        mainMenuVC?.goalList[switchIndex].isCompleted  = !(mainMenuVC?.goalList[switchIndex].isCompleted)!
         print("goal switch \(switchIndex) toggled")
     }
 
