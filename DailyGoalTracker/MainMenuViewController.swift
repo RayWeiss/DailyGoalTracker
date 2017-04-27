@@ -11,7 +11,7 @@ import UIKit
 class MainMenuViewController: UIViewController {
     
     // Array to hold users daily goal list
-    var goalList: [(String, Bool)] = []
+    var goalList: [Goal] = []
     
     // Dictionary to hold past progress
     //
@@ -38,12 +38,10 @@ class MainMenuViewController: UIViewController {
 
     func loadSampleData() {
         // Creat Sample Goal List
-        goalList.append(("Get up at 7:00 am",false))
-        goalList.append(("Eat a healthy breakfast",false))
-        goalList.append(("Run 3 miles",false))
-        goalList.append(("Do _____",false))
-        goalList.append(("Do _____",false))
-        goalList.append(("Go to bed at 10:00 pm",false))
+        goalList.append(Goal(desc: "Get up at 7:00 am", done: false))
+        goalList.append(Goal(desc: "Eat a healthy breakfast", done: false))
+        goalList.append(Goal(desc: "Run 3 miles", done: false))
+        goalList.append(Goal(desc: "Go to bed at 10:00 pm", done: false))
 
         // Creat Sample Progress history
         ProgressHistory[1324495491183518400] = GoalProgress.bad
