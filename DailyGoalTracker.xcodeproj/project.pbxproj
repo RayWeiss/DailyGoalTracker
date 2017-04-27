@@ -43,6 +43,7 @@
 		711A4BF61E96A89F00A6DA25 /* ManageProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711A4BE91E96A89F00A6DA25 /* ManageProgressViewController.swift */; };
 		71404C831E968EFB004F811A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71404C821E968EFB004F811A /* AppDelegate.swift */; };
 		71F5C68E1E9A94FC00C03145 /* EditGoalsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F5C68D1E9A94FC00C03145 /* EditGoalsTableViewCell.swift */; };
+		DAB94C341EB198750088166E /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB94C331EB198750088166E /* Goal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,7 @@
 		71404C821E968EFB004F811A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71404C8E1E968EFC004F811A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71F5C68D1E9A94FC00C03145 /* EditGoalsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditGoalsTableViewCell.swift; sourceTree = "<group>"; };
+		DAB94C331EB198750088166E /* Goal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,18 +174,11 @@
 		71404C811E968EFB004F811A /* DailyGoalTracker */ = {
 			isa = PBXGroup;
 			children = (
-				711831461E9942F6001E748D /* MainMenuViewController.swift */,
-				711A4BE91E96A89F00A6DA25 /* ManageProgressViewController.swift */,
-				711A4BE81E96A89F00A6DA25 /* ManageProgressTableViewCell.swift */,
-				3FC4135F1E9D2ED000AD95BD /* ManageProgressFinalTableViewCell.swift */,
-				711A4BE11E96A89F00A6DA25 /* CalendarViewController.swift */,
-				711A4BE41E96A89F00A6DA25 /* EditGoalsViewController.swift */,
-				71F5C68D1E9A94FC00C03145 /* EditGoalsTableViewCell.swift */,
-				3FC413611E9D349000AD95BD /* EditGoalsNewTableViewCell.swift */,
-				3FC413631E9D34A800AD95BD /* EditGoalsFinalTableViewCell.swift */,
+				DAB94C321EB198510088166E /* Models */,
+				DAB94C311EB197700088166E /* ViewCells */,
+				DAB94C301EB197460088166E /* Controllers */,
+				DAB94C2F1EB1971D0088166E /* Enums */,
 				711A4BE71E96A89F00A6DA25 /* Main.storyboard */,
-				711A4BE21E96A89F00A6DA25 /* CellView.swift */,
-				711A4BE31E96A89F00A6DA25 /* CellView.xib */,
 				711A4BDE1E96A89F00A6DA25 /* AnimationClass.swift */,
 				711A4BDD1E96A89F00A6DA25 /* Animation.swift */,
 				711A4BE51E96A89F00A6DA25 /* Extensions.swift */,
@@ -191,10 +186,50 @@
 				711A4BE61E96A89F00A6DA25 /* LaunchScreen.storyboard */,
 				71404C821E968EFB004F811A /* AppDelegate.swift */,
 				71404C8E1E968EFC004F811A /* Info.plist */,
-				711831481E9943FB001E748D /* ProgressEnum.swift */,
 				7118314C1E995FEC001E748D /* HasMainMenuProtocol.swift */,
 			);
 			path = DailyGoalTracker;
+			sourceTree = "<group>";
+		};
+		DAB94C2F1EB1971D0088166E /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				711831481E9943FB001E748D /* ProgressEnum.swift */,
+			);
+			name = Enums;
+			sourceTree = "<group>";
+		};
+		DAB94C301EB197460088166E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				711831461E9942F6001E748D /* MainMenuViewController.swift */,
+				711A4BE91E96A89F00A6DA25 /* ManageProgressViewController.swift */,
+				711A4BE11E96A89F00A6DA25 /* CalendarViewController.swift */,
+				711A4BE41E96A89F00A6DA25 /* EditGoalsViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		DAB94C311EB197700088166E /* ViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				711A4BE81E96A89F00A6DA25 /* ManageProgressTableViewCell.swift */,
+				3FC4135F1E9D2ED000AD95BD /* ManageProgressFinalTableViewCell.swift */,
+				71F5C68D1E9A94FC00C03145 /* EditGoalsTableViewCell.swift */,
+				3FC413611E9D349000AD95BD /* EditGoalsNewTableViewCell.swift */,
+				3FC413631E9D34A800AD95BD /* EditGoalsFinalTableViewCell.swift */,
+				711A4BE21E96A89F00A6DA25 /* CellView.swift */,
+				711A4BE31E96A89F00A6DA25 /* CellView.xib */,
+			);
+			name = ViewCells;
+			sourceTree = "<group>";
+		};
+		DAB94C321EB198510088166E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DAB94C331EB198750088166E /* Goal.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -344,6 +379,7 @@
 				711A4BF11E96A89F00A6DA25 /* EditGoalsViewController.swift in Sources */,
 				71F5C68E1E9A94FC00C03145 /* EditGoalsTableViewCell.swift in Sources */,
 				3FC413621E9D349000AD95BD /* EditGoalsNewTableViewCell.swift in Sources */,
+				DAB94C341EB198750088166E /* Goal.swift in Sources */,
 				711831471E9942F6001E748D /* MainMenuViewController.swift in Sources */,
 				711831491E9943FB001E748D /* ProgressEnum.swift in Sources */,
 				711A4BF21E96A89F00A6DA25 /* Extensions.swift in Sources */,
