@@ -36,24 +36,32 @@ class CalendarViewController: UIViewController, HasMainMenuProtocol {
     
     
     // Colors
-    // ffa1a0 - red, ffffa0 - yellow, a0ffa0 - green, a0bfff - blue
-    let badColor = UIColor(colorWithHexValue: 0xffa1a0)
-    let mediocreColor = UIColor(colorWithHexValue: 0xffffa0)
-    let goodColor = UIColor(colorWithHexValue: 0xa0ffa0)
+    let darkBadColor = UIColor(colorWithHexValue: 0xf5aaa3)
+    let lightBadColor = UIColor(colorWithHexValue: 0xfad4d1)
+
+    let darkMediocreColor = UIColor(colorWithHexValue: 0xfde59b)
+    let lightMediocreColor = UIColor(colorWithHexValue: 0xfef2cd)
+
+    let darkGoodColor = UIColor(colorWithHexValue: 0x8adba0)
+    let lightGoodColor = UIColor(colorWithHexValue: 0xc4edcf)
+
+    
     let todayBackgroundColor = UIColor.white
     let todayTextColor = UIColor.blue
+    
     let white = UIColor.white
     let black = UIColor.black
     let gray = UIColor.gray
+    let orange = UIColor.orange
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Always scoll to today
         calendarView.scrollToDate(NSDate() as Date)
         
-        badPreformanceLabel.backgroundColor = badColor
-        mediocrePredormanceLabel.backgroundColor = mediocreColor
-        goodPreformanceLabel.backgroundColor = goodColor
+        badPreformanceLabel.backgroundColor = darkBadColor
+        mediocrePredormanceLabel.backgroundColor = darkMediocreColor
+        goodPreformanceLabel.backgroundColor = darkGoodColor
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -152,13 +160,25 @@ extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarVi
         if let progress = mainMenuVC?.ProgressHistory[date.hashValue] {
             switch progress {
             case .bad:
-                myCustomCell.backgroundColor = badColor
+                if cellState.dateBelongsTo == .thisMonth {
+                    myCustomCell.backgroundColor = darkBadColor
+                } else {
+                    myCustomCell.backgroundColor = lightBadColor
+                }
                 
             case .mediocre:
-                myCustomCell.backgroundColor = mediocreColor
+                if cellState.dateBelongsTo == .thisMonth {
+                    myCustomCell.backgroundColor = darkMediocreColor
+                } else {
+                    myCustomCell.backgroundColor = lightMediocreColor
+                }
 
             case .good:
-                myCustomCell.backgroundColor = goodColor
+                if cellState.dateBelongsTo == .thisMonth {
+                    myCustomCell.backgroundColor = darkGoodColor
+                } else {
+                    myCustomCell.backgroundColor = lightGoodColor
+                }
             }
         } else {
             if myCalendar.isDateInToday(date) {
