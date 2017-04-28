@@ -67,4 +67,7 @@ class ManageProgressViewController: UITableViewController, HasMainMenuProtocol {
         print("goal switch \(switchIndex) toggled")
     }
 
+    @IBAction func submitProgressButtonPressed(_ sender: UIButton) {
+        
+    }
 }
