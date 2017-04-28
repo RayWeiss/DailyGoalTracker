@@ -40,10 +40,11 @@ class CalendarViewController: UIViewController, HasMainMenuProtocol {
     let badColor = UIColor(colorWithHexValue: 0xffa1a0)
     let mediocreColor = UIColor(colorWithHexValue: 0xffffa0)
     let goodColor = UIColor(colorWithHexValue: 0xa0ffa0)
-    let todayColor = UIColor(colorWithHexValue: 0xa0bfff)
+    let todayBackgroundColor = UIColor.white
+    let todayTextColor = UIColor.blue
     let white = UIColor.white
     let black = UIColor.black
-    let gray = UIColor.gray    
+    let gray = UIColor.gray
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,11 +107,14 @@ class CalendarViewController: UIViewController, HasMainMenuProtocol {
         guard let myCustomCell = view as? CellView  else {
             return
         }
-
+        
         if cellState.dateBelongsTo == .thisMonth {
             myCustomCell.dayLabel.textColor = black
         } else {
             myCustomCell.dayLabel.textColor = gray
+        }
+        if myCalendar.isDateInToday(cellState.date) {
+            myCustomCell.dayLabel.textColor = todayTextColor
         }
     }
     
@@ -149,7 +153,7 @@ extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarVi
             switch progress {
             case .bad:
                 myCustomCell.backgroundColor = badColor
-
+                
             case .mediocre:
                 myCustomCell.backgroundColor = mediocreColor
 
@@ -157,12 +161,14 @@ extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarVi
                 myCustomCell.backgroundColor = goodColor
             }
         } else {
-            myCustomCell.backgroundColor = white
+            if myCalendar.isDateInToday(date) {
+                myCustomCell.backgroundColor = todayBackgroundColor
+            } else {
+                myCustomCell.backgroundColor = white
+            }
         }
         
-        if myCalendar.isDateInToday(date) {
-            myCustomCell.backgroundColor = todayColor
-        }
+
         
         handleCellConfiguration(cell: myCustomCell, cellState: cellState)
         return myCustomCell

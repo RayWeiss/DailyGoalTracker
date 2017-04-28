@@ -73,7 +73,7 @@ class ManageProgressViewController: UITableViewController, HasMainMenuProtocol {
         formatter.dateFormat = "yyyy MM dd"
         formatter.timeZone = myCalendar.timeZone
         formatter.locale = myCalendar.locale
-        let thisDate = formatter.date(from: "2017 04 19")!
+        let thisDate = formatter.date(from: "2017 04 28")!
         
         mainMenuVC?.submitProgress(forDate: thisDate, withProgress: .mediocre)
         print ("submitProgressButtonPressed() called")
