@@ -21,7 +21,7 @@ class CalendarViewController: UIViewController, HasMainMenuProtocol {
     
     var numberOfRows = 6
     let formatter = DateFormatter()
-    var testCalendar = Calendar.current
+    var myCalendar = Calendar.current
     var generateInDates: InDateCellGeneration = .forAllMonths
     var generateOutDates: OutDateCellGeneration = .tillEndOfGrid
     var prePostVisibility: ((CellState, CellView?)->())?
@@ -89,10 +89,10 @@ class CalendarViewController: UIViewController, HasMainMenuProtocol {
         guard let startDate = visibleDates.monthDates.first?.date else {
             return
         }
-        let month = testCalendar.dateComponents([.month], from: startDate).month!
+        let month = myCalendar.dateComponents([.month], from: startDate).month!
         let monthName = DateFormatter().monthSymbols[(month-1) % 12]
         // 0 indexed array
-        let year = testCalendar.component(.year, from: startDate)
+        let year = myCalendar.component(.year, from: startDate)
         monthLabel.text = monthName + " " + String(year)
     }
     
@@ -122,8 +122,8 @@ extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarVi
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
         
         formatter.dateFormat = "yyyy MM dd"
-        formatter.timeZone = testCalendar.timeZone
-        formatter.locale = testCalendar.locale
+        formatter.timeZone = myCalendar.timeZone
+        formatter.locale = myCalendar.locale
         
         
         let startDate = formatter.date(from: "2000 01 01")!
@@ -132,7 +132,7 @@ extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarVi
         let parameters = ConfigurationParameters(startDate: startDate,
                                                  endDate: endDate,
                                                  numberOfRows: numberOfRows,
-                                                 calendar: testCalendar,
+                                                 calendar: myCalendar,
                                                  generateInDates: generateInDates,
                                                  generateOutDates: generateOutDates,
                                                  firstDayOfWeek: firstDayOfWeek,
@@ -160,7 +160,7 @@ extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarVi
             myCustomCell.backgroundColor = white
         }
         
-        if testCalendar.isDateInToday(date) {
+        if myCalendar.isDateInToday(date) {
             myCustomCell.backgroundColor = todayColor
         }
         

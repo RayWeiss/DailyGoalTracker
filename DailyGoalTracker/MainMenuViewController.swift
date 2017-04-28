@@ -71,4 +71,8 @@ class MainMenuViewController: UIViewController {
         ProgressHistory[1362566470642084800] = GoalProgress.mediocre
     }
 
+    func submitProgress(forDate date: Date, withProgress progress: GoalProgress) {
+        let dateHash = date.hashValue
+        ProgressHistory[dateHash] = progress
+    }
 }

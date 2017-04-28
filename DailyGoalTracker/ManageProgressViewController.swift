@@ -68,6 +68,14 @@ class ManageProgressViewController: UITableViewController, HasMainMenuProtocol {
     }
 
     @IBAction func submitProgressButtonPressed(_ sender: UIButton) {
+        let formatter = DateFormatter()
+        var myCalendar = Calendar.current
+        formatter.dateFormat = "yyyy MM dd"
+        formatter.timeZone = myCalendar.timeZone
+        formatter.locale = myCalendar.locale
+        let thisDate = formatter.date(from: "2017 04 19")!
         
+        mainMenuVC?.submitProgress(forDate: thisDate, withProgress: .mediocre)
+        print ("submitProgressButtonPressed() called")
     }
 }
