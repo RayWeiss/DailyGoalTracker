@@ -13,34 +13,102 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
+    let fileName = "progressDictionary.txt"
+    var delegateGoalList: [Goal] = []
+    var delegateProgressHistory: [Int:GoalProgress] = [:]
+    
+    
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+
+        delegateProgressHistory[1324495491183518400] = .bad
+        delegateProgressHistory[1324724834433268800] = .good
+        delegateProgressHistory[1324954177683019200] = .good
+        delegateProgressHistory[1325183520932769600] = .bad
+        
+        
+        writeDictionary()
+        readDictionary()
+
+        
         return true
     }
 
-    func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
-    }
-
     func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    }
-
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-    }
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    func readDictionary() {
+        // Get documents directory
+        if let documentPath = getDocumentDirStringPath() {
+            
+            let dictionaryPath = documentPath + "/" + fileName
+            
+            // Try to read
+            let readDict:NSDictionary? = NSDictionary(contentsOfFile: dictionaryPath)
+            
+            // See if read succeeded
+            if let dict = readDict {
+                print("Read succeeded: \(dict)")
+                //                delegateProgressHistory = dict as! [Int:GoalProgress]
+                //                print("Read succeeded: \(delegateProgressHistory)")
+            } else {
+                // Read failed
+                print("Read failed.")
+                
+                // Create default dictionary
+                
+                // Read default dicitoanry
+            }
+        }
+    }
+    
+    func writeDictionary() {
+        
+        // Get documents directory
+        if let documentPath = getDocumentDirStringPath() {
+            
+            let dictionaryPath = documentPath + "/" + fileName
+
+            // convert [Int:GoalProgress] dictionary to NSMutableDictionary for writing purposes
+            let muteDict:NSMutableDictionary = [:]
+            for (key, value) in delegateProgressHistory {
+                // get string values
+                let newKey = String(key)
+                let newValue = value.rawValue
+                
+                // add to dictionary
+                muteDict[newKey] = newValue
+            }
+            
+            // attempt to write dicitonary to file
+            let success = muteDict.write(toFile: dictionaryPath, atomically: true)
+            if success {
+                print("Wrote the dictionary to disk")
+            } else {
+                print("Failed to write the dictionary to disk")
+            }
+
+        } else {
+            print("Failed to get Documents path")
+        }
+        
+    }
+    
+    func getDocumentDirStringPath() -> String? {
+        // get document directory path
+        let documentDirectory = NSSearchPathForDirectoriesInDomains(
+            .documentDirectory,
+            .userDomainMask,
+            true)[0]
+        
+        // Output
+//        print("Document Directory: \(String(describing: documentDirectory))")
+        
+        return documentDirectory
     }
 
 
 }
-
