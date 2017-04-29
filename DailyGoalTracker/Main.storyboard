@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="9v8-0V-uqf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="9v8-0V-uqf">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -64,6 +64,9 @@
                                             <rect key="frame" x="87" y="34" width="200" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Submit Today's Progress"/>
+                                            <connections>
+                                                <action selector="submitProgressButtonPressed:" destination="NWs-uv-4Ki" eventType="touchUpInside" id="EX1-La-iQE"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </tableViewCellContentView>
@@ -438,7 +441,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.85820855029999998" green="0.97742139029999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="NjF-V3-nWK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1h3-ZM-mWf"/>
                             <constraint firstItem="Q9B-fy-qOl" firstAttribute="top" secondItem="gEN-MY-15u" secondAttribute="bottom" constant="8" symbolic="YES" id="5E2-4f-wRJ"/>
@@ -517,47 +520,84 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r9b-Va-H2a">
-                                <rect key="frame" x="16" y="283" width="343" height="101"/>
+                                <rect key="frame" x="16" y="191" width="343" height="99"/>
                                 <state key="normal" title="View Progress Calendar"/>
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="show" id="HXg-uq-MHf"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="huq-uR-Qk1">
-                                <rect key="frame" x="16" y="392" width="343" height="99"/>
+                                <rect key="frame" x="16" y="298" width="343" height="99"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="99" id="NLJ-BB-jrO"/>
+                                </constraints>
                                 <state key="normal" title="Edit Daily Goals"/>
                                 <connections>
                                     <segue destination="whA-Uc-NOD" kind="show" id="dF9-xC-5Ih"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ka3-3e-EFU">
-                                <rect key="frame" x="16" y="175" width="343" height="100"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="nfV-m0-PjF"/>
-                                </constraints>
+                                <rect key="frame" x="16" y="81" width="343" height="102"/>
                                 <state key="normal" title="Manage Today's Progess"/>
                                 <connections>
                                     <segue destination="NWs-uv-4Ki" kind="show" id="w4s-Mu-Dkt"/>
                                 </connections>
                             </button>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="97F-hq-SHm">
+                                <rect key="frame" x="16" y="516" width="343" height="99"/>
+                                <date key="date" timeIntervalSinceReferenceDate="515101972.89418602">
+                                    <!--2017-04-28 19:52:52 +0000-->
+                                </date>
+                                <date key="minimumDate" timeIntervalSinceReferenceDate="-31582800">
+                                    <!--2000-01-01 11:00:00 +0000-->
+                                </date>
+                                <date key="maximumDate" timeIntervalSinceReferenceDate="3124177200">
+                                    <!--2100-01-01 11:00:00 +0000-->
+                                </date>
+                                <connections>
+                                    <action selector="dateChanged:" destination="N42-HY-4w9" eventType="valueChanged" id="Lg9-q0-FZJ"/>
+                                </connections>
+                            </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Developer Options" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LBn-CM-0f1">
+                                <rect key="frame" x="16" y="472" width="343" height="22"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.85820855029999998" green="0.97742139029999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="ka3-3e-EFU" firstAttribute="trailing" secondItem="huq-uR-Qk1" secondAttribute="trailing" id="4eb-2J-dsd"/>
-                            <constraint firstItem="r9b-Va-H2a" firstAttribute="centerX" secondItem="Gbb-3F-dTi" secondAttribute="centerX" id="D3t-zn-7SH"/>
-                            <constraint firstItem="ka3-3e-EFU" firstAttribute="leading" secondItem="r9b-Va-H2a" secondAttribute="leading" id="Mb1-vS-BAh"/>
-                            <constraint firstItem="huq-uR-Qk1" firstAttribute="top" secondItem="r9b-Va-H2a" secondAttribute="bottom" constant="8" symbolic="YES" id="Nc7-Q3-yUm"/>
-                            <constraint firstItem="ka3-3e-EFU" firstAttribute="leading" secondItem="huq-uR-Qk1" secondAttribute="leading" id="V2z-md-f4g"/>
-                            <constraint firstItem="r9b-Va-H2a" firstAttribute="centerY" secondItem="Gbb-3F-dTi" secondAttribute="centerY" id="WPW-PI-gUT"/>
-                            <constraint firstItem="huq-uR-Qk1" firstAttribute="centerX" secondItem="Gbb-3F-dTi" secondAttribute="centerX" id="Yhd-AR-NAq"/>
-                            <constraint firstItem="ka3-3e-EFU" firstAttribute="leading" secondItem="Gbb-3F-dTi" secondAttribute="leadingMargin" id="a0n-nZ-riq"/>
-                            <constraint firstItem="ka3-3e-EFU" firstAttribute="top" secondItem="QfN-nq-d8b" secondAttribute="bottom" constant="111" id="cGJ-tT-YYc"/>
-                            <constraint firstItem="ka3-3e-EFU" firstAttribute="centerX" secondItem="Gbb-3F-dTi" secondAttribute="centerX" id="dIz-Cd-Dmi"/>
-                            <constraint firstItem="LLl-wr-Ind" firstAttribute="top" secondItem="huq-uR-Qk1" secondAttribute="bottom" constant="176" id="kDO-sK-uaF"/>
-                            <constraint firstItem="r9b-Va-H2a" firstAttribute="top" secondItem="ka3-3e-EFU" secondAttribute="bottom" constant="8" symbolic="YES" id="kWR-SX-pVO"/>
+                            <constraint firstItem="ka3-3e-EFU" firstAttribute="centerX" secondItem="Gbb-3F-dTi" secondAttribute="centerX" id="0SX-qB-9ym"/>
+                            <constraint firstItem="huq-uR-Qk1" firstAttribute="centerX" secondItem="97F-hq-SHm" secondAttribute="centerX" id="29O-wt-GrJ"/>
+                            <constraint firstItem="huq-uR-Qk1" firstAttribute="leading" secondItem="LBn-CM-0f1" secondAttribute="leading" id="6fs-Nb-gGy"/>
+                            <constraint firstItem="ka3-3e-EFU" firstAttribute="top" secondItem="QfN-nq-d8b" secondAttribute="bottom" constant="17" id="94Y-hM-dc6"/>
+                            <constraint firstItem="huq-uR-Qk1" firstAttribute="top" secondItem="r9b-Va-H2a" secondAttribute="bottom" constant="8" id="AiH-K0-oUD"/>
+                            <constraint firstItem="LLl-wr-Ind" firstAttribute="top" secondItem="97F-hq-SHm" secondAttribute="bottom" constant="52" id="GfV-Nl-PUn"/>
+                            <constraint firstItem="r9b-Va-H2a" firstAttribute="width" secondItem="huq-uR-Qk1" secondAttribute="width" id="KXD-5h-2L6"/>
+                            <constraint firstItem="huq-uR-Qk1" firstAttribute="top" secondItem="r9b-Va-H2a" secondAttribute="bottom" constant="8" id="LEz-ka-iJ2"/>
+                            <constraint firstItem="huq-uR-Qk1" firstAttribute="leading" secondItem="r9b-Va-H2a" secondAttribute="leading" id="ONc-Od-m5l"/>
+                            <constraint firstItem="97F-hq-SHm" firstAttribute="width" secondItem="huq-uR-Qk1" secondAttribute="width" id="QGH-c3-dRm"/>
+                            <constraint firstItem="huq-uR-Qk1" firstAttribute="top" secondItem="r9b-Va-H2a" secondAttribute="bottom" constant="8" symbolic="YES" id="Tam-iI-j2O"/>
+                            <constraint firstItem="huq-uR-Qk1" firstAttribute="trailing" secondItem="LBn-CM-0f1" secondAttribute="trailing" id="a8Q-RA-jTU"/>
+                            <constraint firstItem="huq-uR-Qk1" firstAttribute="trailing" secondItem="r9b-Va-H2a" secondAttribute="trailing" id="aUv-7J-zZ6"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="ka3-3e-EFU" secondAttribute="leading" id="atO-fS-1jI"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="r9b-Va-H2a" secondAttribute="trailing" id="c7R-3Y-a7t"/>
+                            <constraint firstItem="r9b-Va-H2a" firstAttribute="height" secondItem="huq-uR-Qk1" secondAttribute="height" id="coj-wA-l73"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ka3-3e-EFU" secondAttribute="trailing" id="fHT-BI-6RK"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="ka3-3e-EFU" secondAttribute="leading" id="h5Q-Ly-5T2"/>
+                            <constraint firstItem="97F-hq-SHm" firstAttribute="top" secondItem="LBn-CM-0f1" secondAttribute="bottom" constant="22" id="kl0-6y-Jer"/>
+                            <constraint firstItem="LBn-CM-0f1" firstAttribute="top" secondItem="huq-uR-Qk1" secondAttribute="bottom" constant="75" id="obG-NX-VTy"/>
+                            <constraint firstItem="97F-hq-SHm" firstAttribute="height" secondItem="huq-uR-Qk1" secondAttribute="height" id="tMj-6s-m4h"/>
+                            <constraint firstItem="huq-uR-Qk1" firstAttribute="top" secondItem="Gbb-3F-dTi" secondAttribute="top" constant="298" id="vci-e2-4Nz"/>
+                            <constraint firstItem="r9b-Va-H2a" firstAttribute="top" secondItem="ka3-3e-EFU" secondAttribute="bottom" constant="8" id="xaQ-WV-jMW"/>
+                            <constraint firstItem="r9b-Va-H2a" firstAttribute="centerX" secondItem="Gbb-3F-dTi" secondAttribute="centerX" id="ycV-nN-M4o"/>
+                            <constraint firstItem="ka3-3e-EFU" firstAttribute="width" secondItem="r9b-Va-H2a" secondAttribute="width" id="ysu-wI-amN"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="mwu-NM-Hfc"/>
+                    <connections>
+                        <outlet property="developerDatePicker" destination="97F-hq-SHm" id="9mz-R4-c8z"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SDy-ry-8sg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

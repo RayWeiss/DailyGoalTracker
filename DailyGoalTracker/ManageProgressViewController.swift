@@ -67,4 +67,12 @@ class ManageProgressViewController: UITableViewController, HasMainMenuProtocol {
         print("goal switch \(switchIndex) toggled")
     }
 
+    @IBAction func submitProgressButtonPressed(_ sender: UIButton) {
+        if let devDate = mainMenuVC?.getDateToSubmit(),
+            let progress = mainMenuVC?.getProgressToSubmit(){
+
+            mainMenuVC?.submitProgress(forDate: devDate, withProgress: progress)
+            print("submitted \(progress) progress for \(devDate)")
+        }
+    }
 }
