@@ -20,29 +20,71 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var delegateProgressHistory: [Int:GoalProgress] = [:]
     
     
+
+
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+        
+        print("Will finish launching")
+        
         print(delegateProgressHistory)
         readDictionary()
         print(delegateProgressHistory)
-
-        //        writeDictionary()
+        
+        return true
+    }
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        print("Did finish launching")
+        // pass dictionary to VC
+        if let navController = window?.rootViewController as? UINavigationController{
+            if let mainMenuVC = navController.viewControllers.first as? MainMenuViewController{
+                print("Is Main Menu")
+                mainMenuVC.ProgressHistory = delegateProgressHistory
+            } else {
+                print("Is not Main Menu")
+            }
+        } else {
+            print("Is not nav controller")
+        }
 
         return true
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
         print("Will Resign Active")
+        
+        // get dictionary from VC
+        if let navController = window?.rootViewController as? UINavigationController{
+            if let mainMenuVC = navController.viewControllers.first as? MainMenuViewController{
+                print("Is Main Menu")
+                delegateProgressHistory = mainMenuVC.ProgressHistory
+            } else {
+                print("Is not Main Menu")
+            }
+        } else {
+            print("Is not nav controller")
+        }
 
+        // save dictionary
+        writeDictionary()
+        
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
         print("Did Enter Background")
         
+        // get dictionary from VC
+        // save dictionary
+        
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
         print("Will Terminate")
+        
+        // get dictionary from VC
+        // save dictionary
+        
     }
     
     func readDictionary() {
@@ -62,11 +104,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
             } else {
                 // Read failed
-                print("Read failed.")
-                
-                // Create default dictionary
-                
-                // Read default dicitoanry
+                print("Read failed. May be first launch.")
             }
         } else {
             print("Failed to get Documents path")
@@ -102,7 +140,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             print("Failed to get Documents path")
         }
-        
     }
     
     func getDocumentDirStringPath() -> String? {
