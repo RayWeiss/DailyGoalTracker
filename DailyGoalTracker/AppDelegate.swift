@@ -13,38 +13,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    let fileName = "progressDictionary.txt"
+    let savedDictFileName = "progressDictionary.txt"
+    let savedGoalListFileName = "goalList.txt"
+    
     var delegateGoalList: [Goal] = []
     var delegateProgressHistory: [Int:GoalProgress] = [:]
     
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
-        delegateProgressHistory[1324495491183518400] = .bad
-        delegateProgressHistory[1324724834433268800] = .good
-        delegateProgressHistory[1324954177683019200] = .good
-        delegateProgressHistory[1325183520932769600] = .bad
-        
-        
-        writeDictionary()
+        print(delegateProgressHistory)
         readDictionary()
+        print(delegateProgressHistory)
 
-        
+        //        writeDictionary()
+
         return true
     }
 
-    func applicationDidEnterBackground(_ application: UIApplication) {
-    }
+    func applicationWillResignActive(_ application: UIApplication) {
+        print("Will Resign Active")
 
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        print("Did Enter Background")
+        
+    }
+    
     func applicationWillTerminate(_ application: UIApplication) {
+        print("Will Terminate")
     }
     
     func readDictionary() {
         // Get documents directory
         if let documentPath = getDocumentDirStringPath() {
             
-            let dictionaryPath = documentPath + "/" + fileName
+            let dictionaryPath = documentPath + "/" + savedDictFileName
             
             // Try to read
             let readDict:NSDictionary? = NSDictionary(contentsOfFile: dictionaryPath)
@@ -52,8 +57,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // See if read succeeded
             if let dict = readDict {
                 print("Read succeeded: \(dict)")
-                //                delegateProgressHistory = dict as! [Int:GoalProgress]
-                //                print("Read succeeded: \(delegateProgressHistory)")
+                
+                delegateProgressHistory = nsToMine(convert: dict)
+                
             } else {
                 // Read failed
                 print("Read failed.")
@@ -62,6 +68,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 // Read default dicitoanry
             }
+        } else {
+            print("Failed to get Documents path")
         }
     }
     
@@ -70,7 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Get documents directory
         if let documentPath = getDocumentDirStringPath() {
             
-            let dictionaryPath = documentPath + "/" + fileName
+            let dictionaryPath = documentPath + "/" + savedDictFileName
 
             // convert [Int:GoalProgress] dictionary to NSMutableDictionary for writing purposes
             let muteDict:NSMutableDictionary = [:]
@@ -108,6 +116,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        print("Document Directory: \(String(describing: documentDirectory))")
         
         return documentDirectory
+    }
+    
+    func nsToMine(convert nsdict: NSDictionary) -> [Int:GoalProgress] {
+        var myDict: [Int:GoalProgress] = [:]
+
+        for (key, value) in nsdict {
+            // convert Key to int
+            let intKey = Int(key as! String)
+            
+            let stringValue = value as! String
+            var properValue:GoalProgress
+            if stringValue == "bad" {
+                properValue = .bad
+            }
+            else if stringValue == "mediocre" {
+                properValue = .mediocre
+            }
+            else {
+                properValue = .good
+            }
+            
+            // add to dictionary
+            myDict[intKey!] = properValue
+        }
+        
+        return myDict
     }
 
 
