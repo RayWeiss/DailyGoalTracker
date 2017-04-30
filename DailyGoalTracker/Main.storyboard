@@ -27,25 +27,25 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D2a-mJ-mIP">
-                                            <rect key="frame" x="8" y="8" width="0.0" height="83"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                            <rect key="frame" x="18" y="8" width="300" height="84"/>
+                                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
+                                            <color key="textColor" red="0.43666840482437774" green="0.45216381365132863" blue="0.46100764135418815" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dqh-Gf-ih0">
-                                            <rect key="frame" x="302" y="34" width="416" height="31"/>
+                                            <rect key="frame" x="337" y="35" width="51" height="31"/>
                                             <connections>
                                                 <action selector="toggleGoalSwitch:" destination="NWs-uv-4Ki" eventType="valueChanged" id="FcE-KU-P9F"/>
                                             </connections>
                                         </switch>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="dqh-Gf-ih0" firstAttribute="leading" secondItem="N2Y-ao-44W" secondAttribute="leadingMargin" constant="294" id="Aw8-P3-iQP"/>
-                                        <constraint firstItem="dqh-Gf-ih0" firstAttribute="centerY" secondItem="N2Y-ao-44W" secondAttribute="centerY" id="PeX-ot-21g"/>
-                                        <constraint firstItem="D2a-mJ-mIP" firstAttribute="centerY" secondItem="N2Y-ao-44W" secondAttribute="centerY" id="gOL-yF-ogx"/>
-                                        <constraint firstItem="D2a-mJ-mIP" firstAttribute="leading" secondItem="N2Y-ao-44W" secondAttribute="leadingMargin" id="nB6-S9-3cg"/>
-                                        <constraint firstItem="dqh-Gf-ih0" firstAttribute="width" secondItem="N2Y-ao-44W" secondAttribute="width" id="x7r-IV-2Bo"/>
-                                        <constraint firstItem="D2a-mJ-mIP" firstAttribute="top" secondItem="N2Y-ao-44W" secondAttribute="topMargin" id="xy5-rr-U3k"/>
+                                        <constraint firstItem="D2a-mJ-mIP" firstAttribute="leading" secondItem="N2Y-ao-44W" secondAttribute="leadingMargin" constant="10" id="3Ms-GP-fDv"/>
+                                        <constraint firstAttribute="topMargin" secondItem="D2a-mJ-mIP" secondAttribute="top" id="FhG-0z-emq"/>
+                                        <constraint firstItem="dqh-Gf-ih0" firstAttribute="leading" secondItem="D2a-mJ-mIP" secondAttribute="trailing" constant="19" id="SVA-VV-UiE"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="dqh-Gf-ih0" secondAttribute="trailing" constant="20" id="g3P-8F-473"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="D2a-mJ-mIP" secondAttribute="bottom" constant="-0.3333333333333286" id="jHb-yl-uRX"/>
+                                        <constraint firstItem="dqh-Gf-ih0" firstAttribute="centerY" secondItem="N2Y-ao-44W" secondAttribute="centerY" id="z4h-Vv-1Hz"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -122,13 +122,6 @@
                                     <action selector="dateChanged:" destination="BvT-zJ-gkh" eventType="valueChanged" id="wLX-g7-7hL"/>
                                 </connections>
                             </datePicker>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Developer Options" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LBn-CM-0f1">
-                                <rect key="frame" x="36" y="290" width="343" height="20.5"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -157,26 +150,27 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wKY-gs-6xn" customClass="deleteButton" customModule="DailyGoalTracker" customModuleProvider="target">
-                                            <rect key="frame" x="306" y="36" width="61" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wKY-gs-6xn" customClass="deleteButton" customModule="DailyGoalTracker" customModuleProvider="target">
+                                            <rect key="frame" x="328" y="34" width="61" height="32"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="61" id="SuC-n3-6WA"/>
+                                            </constraints>
                                             <state key="normal" title="Delete"/>
                                             <connections>
                                                 <action selector="deleteGoal:" destination="whA-Uc-NOD" eventType="touchUpInside" id="ueq-Dx-W0s"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e2v-vh-yPn">
-                                            <rect key="frame" x="8" y="20" width="290" height="60"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e2v-vh-yPn">
+                                            <rect key="frame" x="18" y="8" width="297" height="84"/>
+                                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
                                             <connections>
                                                 <action selector="goalLabelButtonPressed:" destination="whA-Uc-NOD" eventType="touchUpInside" id="EAP-c8-h2k"/>
                                             </connections>
                                         </button>
-                                        <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pou-u9-lT0">
-                                            <rect key="frame" x="8" y="20" width="290" height="60"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <nil key="textColor"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pou-u9-lT0">
+                                            <rect key="frame" x="18" y="8" width="297" height="84"/>
+                                            <color key="textColor" red="0.43666840480000002" green="0.45216381369999997" blue="0.4610076414" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
                                             <textInputTraits key="textInputTraits"/>
                                             <connections>
                                                 <action selector="editGoal:" destination="whA-Uc-NOD" eventType="editingDidEnd" id="pDg-ul-owo"/>
@@ -185,6 +179,19 @@
                                             </connections>
                                         </textField>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="e2v-vh-yPn" firstAttribute="leading" secondItem="8NQ-hN-ix5" secondAttribute="leadingMargin" constant="10" id="2A4-Vr-Qz3"/>
+                                        <constraint firstItem="wKY-gs-6xn" firstAttribute="centerY" secondItem="8NQ-hN-ix5" secondAttribute="centerY" id="A44-lq-bwC"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="wKY-gs-6xn" secondAttribute="trailing" constant="17" id="D3M-7C-Jv8"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="e2v-vh-yPn" secondAttribute="bottom" constant="-0.3333333333333286" id="IL8-nZ-oF2"/>
+                                        <constraint firstAttribute="topMargin" secondItem="Pou-u9-lT0" secondAttribute="top" id="Lr0-pV-rve"/>
+                                        <constraint firstItem="e2v-vh-yPn" firstAttribute="width" secondItem="Pou-u9-lT0" secondAttribute="width" id="YJW-mW-kso"/>
+                                        <constraint firstItem="wKY-gs-6xn" firstAttribute="leading" secondItem="e2v-vh-yPn" secondAttribute="trailing" constant="13" id="gO2-BO-rwR"/>
+                                        <constraint firstItem="Pou-u9-lT0" firstAttribute="leading" secondItem="8NQ-hN-ix5" secondAttribute="leadingMargin" constant="10" id="lP0-nD-IVd"/>
+                                        <constraint firstItem="e2v-vh-yPn" firstAttribute="height" secondItem="Pou-u9-lT0" secondAttribute="height" id="ntt-HX-MN3"/>
+                                        <constraint firstAttribute="topMargin" secondItem="e2v-vh-yPn" secondAttribute="top" id="wgL-fb-IPb"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Pou-u9-lT0" secondAttribute="bottom" constant="-0.3333333333333286" id="xOC-9u-COJ"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="deleteGoalButton" destination="wKY-gs-6xn" id="s5U-Ot-Rss"/>
@@ -199,26 +206,27 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VSq-qU-1w8" customClass="addButton" customModule="DailyGoalTracker" customModuleProvider="target">
-                                            <rect key="frame" x="306" y="34" width="61" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VSq-qU-1w8" customClass="addButton" customModule="DailyGoalTracker" customModuleProvider="target">
+                                            <rect key="frame" x="328" y="33" width="61" height="32"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="61" id="FWg-Wa-TLy"/>
+                                            </constraints>
                                             <state key="normal" title="Add"/>
                                             <connections>
                                                 <action selector="addNewGoal:" destination="whA-Uc-NOD" eventType="touchUpInside" id="sbn-kb-46n"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IOm-2b-hHn">
-                                            <rect key="frame" x="8" y="19" width="290" height="60"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IOm-2b-hHn">
+                                            <rect key="frame" x="18" y="8" width="297" height="84"/>
+                                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
                                             <connections>
                                                 <action selector="newGoalLabelButtonPressed:" destination="whA-Uc-NOD" eventType="touchUpInside" id="y1L-kB-ap3"/>
                                             </connections>
                                         </button>
-                                        <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EVC-fh-ovx">
-                                            <rect key="frame" x="8" y="19" width="290" height="60"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <nil key="textColor"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EVC-fh-ovx">
+                                            <rect key="frame" x="18" y="8" width="297" height="84"/>
+                                            <color key="textColor" red="0.43666840480000002" green="0.45216381369999997" blue="0.4610076414" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
                                             <textInputTraits key="textInputTraits"/>
                                             <connections>
                                                 <action selector="editNewGoal:" destination="whA-Uc-NOD" eventType="editingDidEnd" id="1qO-4m-KCi"/>
@@ -227,6 +235,20 @@
                                             </connections>
                                         </textField>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="VSq-qU-1w8" secondAttribute="trailing" constant="17" id="2fk-i2-kUQ"/>
+                                        <constraint firstAttribute="topMargin" secondItem="EVC-fh-ovx" secondAttribute="top" id="5nd-wH-zeL"/>
+                                        <constraint firstItem="VSq-qU-1w8" firstAttribute="leading" secondItem="IOm-2b-hHn" secondAttribute="trailing" constant="13" id="8Bb-4a-HO2"/>
+                                        <constraint firstItem="VSq-qU-1w8" firstAttribute="leading" secondItem="EVC-fh-ovx" secondAttribute="trailing" constant="13" id="C0p-mM-vsz"/>
+                                        <constraint firstItem="IOm-2b-hHn" firstAttribute="top" secondItem="5BM-4j-gxL" secondAttribute="topMargin" id="Ico-D6-S0m"/>
+                                        <constraint firstItem="VSq-qU-1w8" firstAttribute="centerY" secondItem="5BM-4j-gxL" secondAttribute="centerY" id="N8n-Nv-wzf"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="IOm-2b-hHn" secondAttribute="bottom" constant="-0.3333333333333286" id="QI8-QR-wGG"/>
+                                        <constraint firstItem="IOm-2b-hHn" firstAttribute="leading" secondItem="5BM-4j-gxL" secondAttribute="leadingMargin" constant="10" id="QnJ-TP-Vv1"/>
+                                        <constraint firstItem="IOm-2b-hHn" firstAttribute="width" secondItem="EVC-fh-ovx" secondAttribute="width" id="c8F-D1-B2g"/>
+                                        <constraint firstItem="IOm-2b-hHn" firstAttribute="height" secondItem="EVC-fh-ovx" secondAttribute="height" id="cbr-lS-i05"/>
+                                        <constraint firstItem="EVC-fh-ovx" firstAttribute="leading" secondItem="5BM-4j-gxL" secondAttribute="leadingMargin" constant="10" id="q0g-fp-kkI"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="EVC-fh-ovx" secondAttribute="bottom" constant="-0.3333333333333286" id="tHq-Lv-W8t"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="addButton" destination="VSq-qU-1w8" id="kkz-CR-izx"/>
@@ -274,7 +296,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OF2-pz-E6P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2797.5999999999999" y="732.68365817091455"/>
+            <point key="canvasLocation" x="2797.1014492753625" y="732.06521739130437"/>
         </scene>
         <!--Ib Data Source-->
         <scene sceneID="tne-QT-ifu">
@@ -412,7 +434,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="LAH-xt-UtI">
-                                <rect key="frame" x="20.666666666666657" y="386.66666666666669" width="374" height="32"/>
+                                <rect key="frame" x="20" y="386.66666666666669" width="374" height="32"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="71c-90-hBJ" customClass="mainMenuButton" customModule="DailyGoalTracker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="68.333333333333329" height="32"/>
@@ -422,25 +444,25 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bad" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NjF-V3-nWK">
-                                        <rect key="frame" x="76.333333333333329" y="0.0" width="68.333333333333357" height="32"/>
+                                        <rect key="frame" x="76.333333333333314" y="0.0" width="68.666666666666686" height="32"/>
                                         <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Okay" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gEN-MY-15u">
-                                        <rect key="frame" x="152.66666666666669" y="0.0" width="68.666666666666657" height="32"/>
+                                        <rect key="frame" x="153" y="0.0" width="68" height="32"/>
                                         <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Good" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q9B-fy-qOl">
-                                        <rect key="frame" x="229.33333333333334" y="0.0" width="68.333333333333286" height="32"/>
+                                        <rect key="frame" x="229.00000000000003" y="0.0" width="68.666666666666714" height="32"/>
                                         <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="53N-DT-Cz0" customClass="mainMenuButton" customModule="DailyGoalTracker" customModuleProvider="target">
-                                        <rect key="frame" x="305.66666666666663" y="0.0" width="68.333333333333371" height="32"/>
+                                        <rect key="frame" x="305.66666666666674" y="0.0" width="68.333333333333314" height="32"/>
                                         <state key="normal" title="&gt;"/>
                                         <connections>
                                             <action selector="next:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3kq-XD-Fbb"/>

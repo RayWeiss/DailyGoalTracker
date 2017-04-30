@@ -20,8 +20,10 @@ class EditGoalsTableViewCell: UITableViewCell {
     }
     
     func setTitleBlackLeft(withString title: String) {
-        let blackFontAttribute = [NSForegroundColorAttributeName: UIColor.black]
-        let attributedGoalString = NSAttributedString(string: title, attributes: blackFontAttribute)
+        let gray = UIColor(colorWithHexValue: 0x6d6b77)
+//        let blackFontAttribute = [NSForegroundColorAttributeName: UIColor.black]
+        let grayFontAttribute = [NSForegroundColorAttributeName: gray]
+        let attributedGoalString = NSAttributedString(string: title, attributes: grayFontAttribute)
         
         goalLabelButton.setAttributedTitle(attributedGoalString, for: .normal)
         goalLabelButton.contentHorizontalAlignment = .left
