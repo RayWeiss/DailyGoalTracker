@@ -77,4 +77,14 @@ class MainMenuViewController: UIViewController {
         return thisDate
     }
     
+    func setAllGoalsToNotCompleted() {
+        for goal in goalList {
+            goal.isCompleted = false
+        }
+    }
+    
+    func clearHistory() {
+        ProgressHistory = [:]
+    }
+    
 }

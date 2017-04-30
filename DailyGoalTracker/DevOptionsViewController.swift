@@ -24,5 +24,8 @@ class DevOptionsViewController: UIViewController, HasMainMenuProtocol {
         mainMenuVC!.todayDate = newDate
     }
 
+    @IBAction func clearProgressButtonPressed(_ sender: UIButton) {
+        mainMenuVC?.clearHistory()
+    }
 
 }
