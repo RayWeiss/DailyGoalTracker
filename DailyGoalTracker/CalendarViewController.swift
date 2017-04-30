@@ -49,6 +49,9 @@ class CalendarViewController: UIViewController, HasMainMenuProtocol {
     let todayBackgroundColor = UIColor.white
     let todayTextColor = UIColor.blue
     
+    let myBorderColor = UIColor(colorWithHexValue: 0xffffff)//0x86b4ef / 0xd4dbe7
+    let myBorderWidth = 0 // default is 2
+    
     let white = UIColor.white
     let black = UIColor.black
     let gray = UIColor.gray
@@ -108,14 +111,17 @@ class CalendarViewController: UIViewController, HasMainMenuProtocol {
     func handleCellConfiguration(cell: JTAppleCell?, cellState: CellState) {
         handleCellTextColor(view: cell, cellState: cellState)
         prePostVisibility?(cellState, cell as? CellView)
+        
+        cell?.layer.borderColor = myBorderColor.cgColor
+        cell?.layer.borderWidth = CGFloat(myBorderWidth)
     }
     
-    // Function to handle the text color of the calendar
+    // Function to handle the text attributes of the calendar
     func handleCellTextColor(view: JTAppleCell?, cellState: CellState) {
         guard let myCustomCell = view as? CellView  else {
             return
         }
-        
+        myCustomCell.dayLabel.font = UIFont(name: "Helvetica-Bold", size: CGFloat(20.0))
         if cellState.dateBelongsTo == .thisMonth {
             myCustomCell.dayLabel.textColor = black
         } else {
