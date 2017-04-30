@@ -21,7 +21,7 @@ class CalendarViewController: UIViewController, HasMainMenuProtocol {
     
     var numberOfRows = 6
     let formatter = DateFormatter()
-    var testCalendar = Calendar.current
+    var myCalendar = Calendar.current
     var generateInDates: InDateCellGeneration = .forAllMonths
     var generateOutDates: OutDateCellGeneration = .tillEndOfGrid
     var prePostVisibility: ((CellState, CellView?)->())?
@@ -36,23 +36,35 @@ class CalendarViewController: UIViewController, HasMainMenuProtocol {
     
     
     // Colors
-    // ffa1a0 - red, ffffa0 - yellow, a0ffa0 - green, a0bfff - blue
-    let badColor = UIColor(colorWithHexValue: 0xffa1a0)
-    let mediocreColor = UIColor(colorWithHexValue: 0xffffa0)
-    let goodColor = UIColor(colorWithHexValue: 0xa0ffa0)
-    let todayColor = UIColor(colorWithHexValue: 0xa0bfff)
+    let darkBadColor = UIColor(colorWithHexValue: 0xf5aaa3)
+    let lightBadColor = UIColor(colorWithHexValue: 0xfad4d1)
+
+    let darkMediocreColor = UIColor(colorWithHexValue: 0xfde59b)
+    let lightMediocreColor = UIColor(colorWithHexValue: 0xfef2cd)
+
+    let darkGoodColor = UIColor(colorWithHexValue: 0x8adba0)
+    let lightGoodColor = UIColor(colorWithHexValue: 0xc4edcf)
+
+    
+    let todayBackgroundColor = UIColor.white
+    let todayTextColor = UIColor.blue
+    
+    let myBorderColor = UIColor(colorWithHexValue: 0xffffff)//0x86b4ef / 0xd4dbe7
+    let myBorderWidth = 0 // default is 2
+    
     let white = UIColor.white
     let black = UIColor.black
-    let gray = UIColor.gray    
+    let gray = UIColor.gray
+    let orange = UIColor.orange
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Always scoll to today
         calendarView.scrollToDate(NSDate() as Date)
         
-        badPreformanceLabel.backgroundColor = badColor
-        mediocrePredormanceLabel.backgroundColor = mediocreColor
-        goodPreformanceLabel.backgroundColor = goodColor
+        badPreformanceLabel.backgroundColor = darkBadColor
+        mediocrePredormanceLabel.backgroundColor = darkMediocreColor
+        goodPreformanceLabel.backgroundColor = darkGoodColor
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -89,28 +101,34 @@ class CalendarViewController: UIViewController, HasMainMenuProtocol {
         guard let startDate = visibleDates.monthDates.first?.date else {
             return
         }
-        let month = testCalendar.dateComponents([.month], from: startDate).month!
+        let month = myCalendar.dateComponents([.month], from: startDate).month!
         let monthName = DateFormatter().monthSymbols[(month-1) % 12]
         // 0 indexed array
-        let year = testCalendar.component(.year, from: startDate)
+        let year = myCalendar.component(.year, from: startDate)
         monthLabel.text = monthName + " " + String(year)
     }
     
     func handleCellConfiguration(cell: JTAppleCell?, cellState: CellState) {
         handleCellTextColor(view: cell, cellState: cellState)
         prePostVisibility?(cellState, cell as? CellView)
+        
+        cell?.layer.borderColor = myBorderColor.cgColor
+        cell?.layer.borderWidth = CGFloat(myBorderWidth)
     }
     
-    // Function to handle the text color of the calendar
+    // Function to handle the text attributes of the calendar
     func handleCellTextColor(view: JTAppleCell?, cellState: CellState) {
         guard let myCustomCell = view as? CellView  else {
             return
         }
-
+        myCustomCell.dayLabel.font = UIFont(name: "Helvetica-Bold", size: CGFloat(20.0))
         if cellState.dateBelongsTo == .thisMonth {
             myCustomCell.dayLabel.textColor = black
         } else {
             myCustomCell.dayLabel.textColor = gray
+        }
+        if myCalendar.isDateInToday(cellState.date) {
+            myCustomCell.dayLabel.textColor = todayTextColor
         }
     }
     
@@ -122,8 +140,8 @@ extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarVi
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
         
         formatter.dateFormat = "yyyy MM dd"
-        formatter.timeZone = testCalendar.timeZone
-        formatter.locale = testCalendar.locale
+        formatter.timeZone = myCalendar.timeZone
+        formatter.locale = myCalendar.locale
         
         
         let startDate = formatter.date(from: "2000 01 01")!
@@ -132,7 +150,7 @@ extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarVi
         let parameters = ConfigurationParameters(startDate: startDate,
                                                  endDate: endDate,
                                                  numberOfRows: numberOfRows,
-                                                 calendar: testCalendar,
+                                                 calendar: myCalendar,
                                                  generateInDates: generateInDates,
                                                  generateOutDates: generateOutDates,
                                                  firstDayOfWeek: firstDayOfWeek,
@@ -148,21 +166,35 @@ extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarVi
         if let progress = mainMenuVC?.ProgressHistory[date.hashValue] {
             switch progress {
             case .bad:
-                myCustomCell.backgroundColor = badColor
-
+                if cellState.dateBelongsTo == .thisMonth {
+                    myCustomCell.backgroundColor = darkBadColor
+                } else {
+                    myCustomCell.backgroundColor = lightBadColor
+                }
+                
             case .mediocre:
-                myCustomCell.backgroundColor = mediocreColor
+                if cellState.dateBelongsTo == .thisMonth {
+                    myCustomCell.backgroundColor = darkMediocreColor
+                } else {
+                    myCustomCell.backgroundColor = lightMediocreColor
+                }
 
             case .good:
-                myCustomCell.backgroundColor = goodColor
+                if cellState.dateBelongsTo == .thisMonth {
+                    myCustomCell.backgroundColor = darkGoodColor
+                } else {
+                    myCustomCell.backgroundColor = lightGoodColor
+                }
             }
         } else {
-            myCustomCell.backgroundColor = white
+            if myCalendar.isDateInToday(date) {
+                myCustomCell.backgroundColor = todayBackgroundColor
+            } else {
+                myCustomCell.backgroundColor = white
+            }
         }
         
-        if testCalendar.isDateInToday(date) {
-            myCustomCell.backgroundColor = todayColor
-        }
+
         
         handleCellConfiguration(cell: myCustomCell, cellState: cellState)
         return myCustomCell

@@ -12,7 +12,7 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
 
     var mainMenuVC: MainMenuViewController?
     
-    let sectionCount = 3
+    let sectionCount = 2
 
     
     override func viewDidLoad() {
@@ -48,8 +48,8 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! EditGoalsTableViewCell
             
             // Configure the cell...
-            cell.goalTextField.text = (mainMenuVC?.goalList[indexPath.row].0)!
-            cell.setTitleBlackLeft(withString: (mainMenuVC?.goalList[indexPath.row].0)!)
+            cell.goalTextField.text = (mainMenuVC?.goalList[indexPath.row].text)!
+            cell.setTitleBlackLeft(withString: (mainMenuVC?.goalList[indexPath.row].text)!)
             
             // set tags as index row
             cell.goalTextField.tag = indexPath.row
@@ -58,7 +58,8 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
             
             return cell
             
-        case 1:
+        default:
+//        case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewCell", for: indexPath) as! EditGoalsNewTableViewCell
             
             // configure the cell
@@ -72,10 +73,10 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
             
             return cell
             
-        default:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "FinalCell", for: indexPath) as! EditGoalsFinalTableViewCell
-            
-            return cell
+//        default:
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "FinalCell", for: indexPath) as! EditGoalsFinalTableViewCell
+//            
+//            return cell
         }
         
     }
@@ -109,7 +110,7 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
                     cell.setTitleBlackLeft(withString: textFieldText)
                     
                     // Update goal list
-                    mainMenuVC?.goalList[goalIndex] = (textFieldText,false)
+                    mainMenuVC?.goalList[goalIndex] = Goal(desc: textFieldText, done: false)
                 }
             }
         }
@@ -137,7 +138,7 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
         if let cell = tableView.cellForRow(at: path) as? EditGoalsNewTableViewCell {
             if let newGoal = cell.newGoalTextField.text {
                 if !newGoal.isEmpty {
-                    mainMenuVC?.goalList.append((newGoal,false))
+                    mainMenuVC?.goalList.append(Goal(desc: newGoal,done: false))
                     cell.newGoalTextField.text = nil
                     tableView.reloadData()
                 }
@@ -150,6 +151,9 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
         if let cell = tableView.cellForRow(at: path) as? EditGoalsTableViewCell {
             cell.goalLabelButton.isHidden = false
             cell.goalTextField.isHidden = true
+            cell.deleteGoalButton.isUserInteractionEnabled = true
+            cell.goalLabelButton.isUserInteractionEnabled = true
+            print("renabled current cell buttons")
             cell.goalTextField.resignFirstResponder()
         }
         
@@ -157,9 +161,94 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
         if let cell = tableView.cellForRow(at: path) as? EditGoalsNewTableViewCell {
             cell.newGoalTextField.isHidden = true
             cell.newGoalLabelButton.isHidden = false
+            cell.addButton.isUserInteractionEnabled = true
+            cell.newGoalLabelButton.isUserInteractionEnabled = true
+            print("renabled current cell buttons")
             cell.newGoalTextField.resignFirstResponder()
+        }
+        
+        let sectionCount = tableView.numberOfSections
+        for sectionIndex in 0..<sectionCount {
+            let rowCount = tableView.numberOfRows(inSection: sectionIndex)
+            for rowIndex in 0..<rowCount {
+                let path = IndexPath(row: rowIndex, section: sectionIndex)
+                if let cell = tableView.cellForRow(at: path) {
+                    cell.isUserInteractionEnabled = true
+                    print("reenabled cell interaction")
+                }
+            }
         }
         
         return true
     }
+    
+    @IBAction func editGoalDisableButtons(_ sender: UITextField) {
+        let currentRow = sender.tag
+        let currentSection = 0
+        let currentPath = IndexPath(row: currentRow, section: currentSection)
+        
+        let sectionCount = tableView.numberOfSections
+        
+        for sectionIndex in 0..<sectionCount {
+            let rowCount = tableView.numberOfRows(inSection: sectionIndex)
+            
+            for rowIndex in 0..<rowCount {
+                let path = IndexPath(row: rowIndex, section: sectionIndex)
+                if let cell = tableView.cellForRow(at: path) {
+                    if path == currentPath {
+                        if let currentCell = cell as? EditGoalsTableViewCell {
+                            currentCell.deleteGoalButton.isUserInteractionEnabled = false
+                            currentCell.goalLabelButton.isUserInteractionEnabled = false
+                            print("disabled current cell buttons")
+                        } else {
+                            print("did not disable current cell buttons")
+                        }
+                    } else {
+                        cell.isUserInteractionEnabled = false
+                        print("disabled cell interaction")
+                    }
+                }
+            }
+        }
+    }
+    
+    @IBAction func editNewGoalDisableButtons(_ sender: UITextField) {
+        let currentRow = sender.tag
+        let currentSection = 1
+        let currentPath = IndexPath(row: currentRow, section: currentSection)
+        
+        let sectionCount = tableView.numberOfSections
+        
+        for sectionIndex in 0..<sectionCount {
+            let rowCount = tableView.numberOfRows(inSection: sectionIndex)
+            
+            for rowIndex in 0..<rowCount {
+                let path = IndexPath(row: rowIndex, section: sectionIndex)
+                if let cell = tableView.cellForRow(at: path) {
+                    if path == currentPath {
+                        if let currentCell = cell as? EditGoalsNewTableViewCell {
+                            currentCell.addButton.isUserInteractionEnabled = false
+                            currentCell.newGoalLabelButton.isUserInteractionEnabled = false
+                            print("disabled current cell buttons")
+                        } else {
+                            print("did not disable current cell buttons")
+                        }
+                    } else {
+                        cell.isUserInteractionEnabled = false
+                        print("disabled cell interaction")
+                    }
+                }
+            }
+        }
+    }
+    
+    @IBAction func makeChangesPressed(_ sender: UIButton) {
+        print("makeChangesPressed")
+    }
+    
+    @IBAction func revertChangesPressed(_ sender: UIButton) {
+        print("revertChangesPressed")
+
+    }
+    
 }

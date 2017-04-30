@@ -9,9 +9,12 @@
 import UIKit
 
 class MainMenuViewController: UIViewController {
+        
+    let mediocreCutOff = 0.30
+    let goodCutOff = 0.80
     
     // Array to hold users daily goal list
-    var goalList: [(String, Bool)] = []
+    var goalList: [Goal] = []
     
     // Dictionary to hold past progress
     //
@@ -19,13 +22,13 @@ class MainMenuViewController: UIViewController {
     // value is enum "GoalProgress" possible values are .bad, .mediocre, and .good
     var ProgressHistory: [Int:GoalProgress] = [:]
 
+    var todayDate: Date = NSDate() as Date
 
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        loadSampleData()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -36,41 +39,42 @@ class MainMenuViewController: UIViewController {
         destVC?.mainMenuVC = self
     }
 
-    func loadSampleData() {
-        // Creat Sample Goal List
-        goalList.append(("Get up at 7:00 am",false))
-        goalList.append(("Eat a healthy breakfast",false))
-        goalList.append(("Run 3 miles",false))
-        goalList.append(("Do _____",false))
-        goalList.append(("Do _____",false))
-        goalList.append(("Go to bed at 10:00 pm",false))
-
-        // Creat Sample Progress history
-        ProgressHistory[1324495491183518400] = GoalProgress.bad
-        ProgressHistory[1324724834433268800] = GoalProgress.good
-        ProgressHistory[1324954177683019200] = GoalProgress.good
-        ProgressHistory[1325183520932769600] = GoalProgress.bad
-        ProgressHistory[1325412864182520000] = GoalProgress.good
-        ProgressHistory[1325871550682020800] = GoalProgress.mediocre
-        ProgressHistory[1326100893931771200] = GoalProgress.mediocre
-        ProgressHistory[1326330237181521600] = GoalProgress.bad
-        ProgressHistory[1326559580431272000] = GoalProgress.good
-        ProgressHistory[1326788923681022400] = GoalProgress.good
-        ProgressHistory[1327018266930772800] = GoalProgress.mediocre
-        ProgressHistory[1359585008395329600] = GoalProgress.mediocre
-        ProgressHistory[1359814351645080000] = GoalProgress.bad
-        ProgressHistory[1360043694894830400] = GoalProgress.good
-        ProgressHistory[1360273038144580800] = GoalProgress.bad
-        ProgressHistory[1360502381394331200] = GoalProgress.good
-        ProgressHistory[1360731724644081600] = GoalProgress.good
-        ProgressHistory[1360961067893832000] = GoalProgress.mediocre
-        ProgressHistory[1361190411143582400] = GoalProgress.mediocre
-        ProgressHistory[1361419754393332800] = GoalProgress.good
-        ProgressHistory[1361649097643083200] = GoalProgress.good
-        ProgressHistory[1361878440892833600] = GoalProgress.mediocre
-        ProgressHistory[1362107784142584000] = GoalProgress.good
-        ProgressHistory[1362337127392334400] = GoalProgress.mediocre
-        ProgressHistory[1362566470642084800] = GoalProgress.mediocre
+    func submitProgress(forDate date: Date, withProgress progress: GoalProgress) {
+        let dateHash = date.hashValue
+        ProgressHistory[dateHash] = progress
     }
-
+    
+    func getProgressToSubmit() -> GoalProgress {
+        let total = Double(goalList.count)
+        var completed = 0.0
+        for goal in goalList {
+            if goal.isCompleted {
+                completed += 1
+            }
+        }
+        let percentCompleted = completed/total
+        
+        if percentCompleted < mediocreCutOff {
+            return .bad
+        }
+        else if percentCompleted < goodCutOff {
+            return .mediocre
+        }
+        else {
+            return .good
+        }
+    }
+    
+    func getDateToSubmit() -> Date{
+        let formatter = DateFormatter()
+        var myCalendar = Calendar.current
+        formatter.dateFormat = "yyyy MM dd"
+        formatter.timeZone = myCalendar.timeZone
+        formatter.locale = myCalendar.locale
+        let dateString = formatter.string(from: todayDate)
+        let thisDate = formatter.date(from: dateString)!
+        
+        return thisDate
+    }
+    
 }
