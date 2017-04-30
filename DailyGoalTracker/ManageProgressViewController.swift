@@ -39,7 +39,6 @@ class ManageProgressViewController: UITableViewController, HasMainMenuProtocol {
     }
     
     
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         switch indexPath.section {
