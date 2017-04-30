@@ -42,6 +42,8 @@
 		711A4BF51E96A89F00A6DA25 /* ManageProgressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711A4BE81E96A89F00A6DA25 /* ManageProgressTableViewCell.swift */; };
 		711A4BF61E96A89F00A6DA25 /* ManageProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711A4BE91E96A89F00A6DA25 /* ManageProgressViewController.swift */; };
 		71404C831E968EFB004F811A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71404C821E968EFB004F811A /* AppDelegate.swift */; };
+		71B72CB81EB61521009D6DCA /* mainMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B72CB71EB61521009D6DCA /* mainMenuButton.swift */; };
+		71B72CBA1EB62595009D6DCA /* DevOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B72CB91EB62595009D6DCA /* DevOptionsViewController.swift */; };
 		71F5C68E1E9A94FC00C03145 /* EditGoalsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F5C68D1E9A94FC00C03145 /* EditGoalsTableViewCell.swift */; };
 		DAB94C341EB198750088166E /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB94C331EB198750088166E /* Goal.swift */; };
 /* End PBXBuildFile section */
@@ -108,6 +110,8 @@
 		71404C7F1E968EFB004F811A /* DailyGoalTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyGoalTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71404C821E968EFB004F811A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71404C8E1E968EFC004F811A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		71B72CB71EB61521009D6DCA /* mainMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mainMenuButton.swift; sourceTree = "<group>"; };
+		71B72CB91EB62595009D6DCA /* DevOptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevOptionsViewController.swift; sourceTree = "<group>"; };
 		71F5C68D1E9A94FC00C03145 /* EditGoalsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditGoalsTableViewCell.swift; sourceTree = "<group>"; };
 		DAB94C331EB198750088166E /* Goal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -178,6 +182,7 @@
 				DAB94C311EB197700088166E /* ViewCells */,
 				DAB94C301EB197460088166E /* Controllers */,
 				DAB94C2F1EB1971D0088166E /* Enums */,
+				71B72CB61EB6149C009D6DCA /* Aesthetics */,
 				711A4BE71E96A89F00A6DA25 /* Main.storyboard */,
 				711A4BDE1E96A89F00A6DA25 /* AnimationClass.swift */,
 				711A4BDD1E96A89F00A6DA25 /* Animation.swift */,
@@ -189,6 +194,14 @@
 				7118314C1E995FEC001E748D /* HasMainMenuProtocol.swift */,
 			);
 			path = DailyGoalTracker;
+			sourceTree = "<group>";
+		};
+		71B72CB61EB6149C009D6DCA /* Aesthetics */ = {
+			isa = PBXGroup;
+			children = (
+				71B72CB71EB61521009D6DCA /* mainMenuButton.swift */,
+			);
+			name = Aesthetics;
 			sourceTree = "<group>";
 		};
 		DAB94C2F1EB1971D0088166E /* Enums */ = {
@@ -206,6 +219,7 @@
 				711A4BE91E96A89F00A6DA25 /* ManageProgressViewController.swift */,
 				711A4BE11E96A89F00A6DA25 /* CalendarViewController.swift */,
 				711A4BE41E96A89F00A6DA25 /* EditGoalsViewController.swift */,
+				71B72CB91EB62595009D6DCA /* DevOptionsViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -371,6 +385,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7118314D1E995FEC001E748D /* HasMainMenuProtocol.swift in Sources */,
+				71B72CBA1EB62595009D6DCA /* DevOptionsViewController.swift in Sources */,
+				71B72CB81EB61521009D6DCA /* mainMenuButton.swift in Sources */,
 				711A4BEE1E96A89F00A6DA25 /* CalendarViewController.swift in Sources */,
 				711A4BEF1E96A89F00A6DA25 /* CellView.swift in Sources */,
 				711A4BEA1E96A89F00A6DA25 /* Animation.swift in Sources */,
