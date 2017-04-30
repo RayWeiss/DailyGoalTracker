@@ -39,7 +39,6 @@ class ManageProgressViewController: UITableViewController, HasMainMenuProtocol {
     }
     
     
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         switch indexPath.section {
@@ -75,5 +74,13 @@ class ManageProgressViewController: UITableViewController, HasMainMenuProtocol {
             mainMenuVC?.submitProgress(forDate: devDate, withProgress: progress)
             print("submitted \(progress) progress for \(devDate)")
         }
+        
+        _ = navigationController?.popViewController(animated: true)
+
+    }
+    
+    @IBAction func clearButtonPressed(_ sender: UIButton) {
+        mainMenuVC?.setAllGoalsToNotCompleted()
+        self.tableView.reloadData()
     }
 }
