@@ -44,6 +44,8 @@
 		71404C831E968EFB004F811A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71404C821E968EFB004F811A /* AppDelegate.swift */; };
 		71B72CB81EB61521009D6DCA /* mainMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B72CB71EB61521009D6DCA /* mainMenuButton.swift */; };
 		71B72CBA1EB62595009D6DCA /* DevOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B72CB91EB62595009D6DCA /* DevOptionsViewController.swift */; };
+		71B72CBC1EB6433F009D6DCA /* addButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B72CBB1EB6433F009D6DCA /* addButton.swift */; };
+		71B72CBE1EB64351009D6DCA /* deleteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B72CBD1EB64351009D6DCA /* deleteButton.swift */; };
 		71F5C68E1E9A94FC00C03145 /* EditGoalsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F5C68D1E9A94FC00C03145 /* EditGoalsTableViewCell.swift */; };
 		DAB94C341EB198750088166E /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB94C331EB198750088166E /* Goal.swift */; };
 /* End PBXBuildFile section */
@@ -112,6 +114,8 @@
 		71404C8E1E968EFC004F811A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71B72CB71EB61521009D6DCA /* mainMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mainMenuButton.swift; sourceTree = "<group>"; };
 		71B72CB91EB62595009D6DCA /* DevOptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevOptionsViewController.swift; sourceTree = "<group>"; };
+		71B72CBB1EB6433F009D6DCA /* addButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addButton.swift; sourceTree = "<group>"; };
+		71B72CBD1EB64351009D6DCA /* deleteButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = deleteButton.swift; sourceTree = "<group>"; };
 		71F5C68D1E9A94FC00C03145 /* EditGoalsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditGoalsTableViewCell.swift; sourceTree = "<group>"; };
 		DAB94C331EB198750088166E /* Goal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -200,6 +204,8 @@
 			isa = PBXGroup;
 			children = (
 				71B72CB71EB61521009D6DCA /* mainMenuButton.swift */,
+				71B72CBB1EB6433F009D6DCA /* addButton.swift */,
+				71B72CBD1EB64351009D6DCA /* deleteButton.swift */,
 			);
 			name = Aesthetics;
 			sourceTree = "<group>";
@@ -395,9 +401,11 @@
 				711A4BEB1E96A89F00A6DA25 /* AnimationClass.swift in Sources */,
 				711A4BF11E96A89F00A6DA25 /* EditGoalsViewController.swift in Sources */,
 				71F5C68E1E9A94FC00C03145 /* EditGoalsTableViewCell.swift in Sources */,
+				71B72CBC1EB6433F009D6DCA /* addButton.swift in Sources */,
 				3FC413621E9D349000AD95BD /* EditGoalsNewTableViewCell.swift in Sources */,
 				DAB94C341EB198750088166E /* Goal.swift in Sources */,
 				711831471E9942F6001E748D /* MainMenuViewController.swift in Sources */,
+				71B72CBE1EB64351009D6DCA /* deleteButton.swift in Sources */,
 				711831491E9943FB001E748D /* ProgressEnum.swift in Sources */,
 				711A4BF21E96A89F00A6DA25 /* Extensions.swift in Sources */,
 				711A4BF61E96A89F00A6DA25 /* ManageProgressViewController.swift in Sources */,
