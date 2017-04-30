@@ -29,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         print(delegateProgressHistory)
         readDictionary()
+        loadGoalArray()
         print(delegateProgressHistory)
         
         return true
@@ -41,13 +42,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let mainMenuVC = navController.viewControllers.first as? MainMenuViewController{
                 print("Is Main Menu")
                 mainMenuVC.ProgressHistory = delegateProgressHistory
+                mainMenuVC.goalList = delegateGoalList
             } else {
                 print("Is not Main Menu")
             }
         } else {
             print("Is not nav controller")
         }
-
+        
         return true
     }
 
@@ -59,6 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let mainMenuVC = navController.viewControllers.first as? MainMenuViewController{
                 print("Is Main Menu")
                 delegateProgressHistory = mainMenuVC.ProgressHistory
+                delegateGoalList = mainMenuVC.goalList
             } else {
                 print("Is not Main Menu")
             }
@@ -68,23 +71,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // save dictionary
         writeDictionary()
+        saveGoalArray()
         
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
         print("Did Enter Background")
-        
-        // get dictionary from VC
-        // save dictionary
-        
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
         print("Will Terminate")
-        
-        // get dictionary from VC
-        // save dictionary
-        
     }
     
     func readDictionary() {
@@ -179,6 +175,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         return myDict
+    }
+    
+    func saveGoalArray(){
+        let goalArray = delegateGoalList
+        print("saving goal arrary:")
+        for goal in goalArray {
+            print(goal.text, goal.isCompleted)
+        }
+        let goalData = NSKeyedArchiver.archivedData(withRootObject: goalArray)
+        UserDefaults.standard.set(goalData, forKey: "goals")
+    }
+    
+    func loadGoalArray(){
+        print("loading goal arrary")
+        let goalData = UserDefaults.standard.object(forKey: "goals") as? NSData
+        
+        if let goalData = goalData {
+            let goalArray = NSKeyedUnarchiver.unarchiveObject(with: goalData as Data) as? [Goal]
+            
+            if let goalArray = goalArray {
+                delegateGoalList = goalArray
+                for goal in goalArray {
+                    print(goal.text, goal.isCompleted)
+                }
+            } else {
+                print("goalArray did not = goalArray, may be first launch")
+            }
+            
+        } else {
+            print(" goalData did not = goalData")
+        }
     }
 
 

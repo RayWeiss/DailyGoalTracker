@@ -44,11 +44,11 @@ class MainMenuViewController: UIViewController {
     }
 
     func loadSampleData() {
-        // Create Sample Goal List
-        goalList.append(Goal(desc: "Get up at 7:00 am", done: false))
-        goalList.append(Goal(desc: "Eat a healthy breakfast", done: false))
-        goalList.append(Goal(desc: "Run 3 miles", done: false))
-        goalList.append(Goal(desc: "Go to bed at 10:00 pm", done: false))
+//        // Create Sample Goal List
+//        goalList.append(Goal(desc: "Get up at 7:00 am", done: false))
+//        goalList.append(Goal(desc: "Eat a healthy breakfast", done: false))
+//        goalList.append(Goal(desc: "Run 3 miles", done: false))
+//        goalList.append(Goal(desc: "Go to bed at 10:00 pm", done: false))
 
 //        // Create Sample Progress history
 //        ProgressHistory[1324495491183518400] = GoalProgress.bad
