@@ -74,5 +74,13 @@ class ManageProgressViewController: UITableViewController, HasMainMenuProtocol {
             mainMenuVC?.submitProgress(forDate: devDate, withProgress: progress)
             print("submitted \(progress) progress for \(devDate)")
         }
+        
+        _ = navigationController?.popViewController(animated: true)
+
+    }
+    
+    @IBAction func clearButtonPressed(_ sender: UIButton) {
+        mainMenuVC?.setAllGoalsToNotCompleted()
+        self.tableView.reloadData()
     }
 }
