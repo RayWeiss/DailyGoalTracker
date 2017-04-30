@@ -12,7 +12,7 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
 
     var mainMenuVC: MainMenuViewController?
     
-    let sectionCount = 3
+    let sectionCount = 2
 
     
     override func viewDidLoad() {
@@ -58,7 +58,8 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
             
             return cell
             
-        case 1:
+        default:
+//        case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewCell", for: indexPath) as! EditGoalsNewTableViewCell
             
             // configure the cell
@@ -72,10 +73,10 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
             
             return cell
             
-        default:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "FinalCell", for: indexPath) as! EditGoalsFinalTableViewCell
-            
-            return cell
+//        default:
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "FinalCell", for: indexPath) as! EditGoalsFinalTableViewCell
+//            
+//            return cell
         }
         
     }

@@ -9,9 +9,7 @@
 import UIKit
 
 class MainMenuViewController: UIViewController {
-    
-    @IBOutlet weak var developerDatePicker: UIDatePicker!
-    
+        
     let mediocreCutOff = 0.30
     let goodCutOff = 0.80
     
@@ -31,7 +29,6 @@ class MainMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        developerDatePicker.date = todayDate
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -45,11 +42,6 @@ class MainMenuViewController: UIViewController {
     func submitProgress(forDate date: Date, withProgress progress: GoalProgress) {
         let dateHash = date.hashValue
         ProgressHistory[dateHash] = progress
-    }
-    
-    @IBAction func dateChanged(_ sender: UIDatePicker) {
-        let newDate = sender.date
-        todayDate = newDate
     }
     
     func getProgressToSubmit() -> GoalProgress {
