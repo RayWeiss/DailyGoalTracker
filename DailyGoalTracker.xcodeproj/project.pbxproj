@@ -188,16 +188,26 @@
 				DAB94C2F1EB1971D0088166E /* Enums */,
 				71B72CB61EB6149C009D6DCA /* Aesthetics */,
 				711A4BE71E96A89F00A6DA25 /* Main.storyboard */,
-				711A4BDE1E96A89F00A6DA25 /* AnimationClass.swift */,
-				711A4BDD1E96A89F00A6DA25 /* Animation.swift */,
-				711A4BE51E96A89F00A6DA25 /* Extensions.swift */,
 				711A4BDF1E96A89F00A6DA25 /* Assets.xcassets */,
 				711A4BE61E96A89F00A6DA25 /* LaunchScreen.storyboard */,
 				71404C821E968EFB004F811A /* AppDelegate.swift */,
 				71404C8E1E968EFC004F811A /* Info.plist */,
 				7118314C1E995FEC001E748D /* HasMainMenuProtocol.swift */,
+				71412CD81EB8C7AC008B60EB /* JTAppleCalendarCode */,
 			);
 			path = DailyGoalTracker;
+			sourceTree = "<group>";
+		};
+		71412CD81EB8C7AC008B60EB /* JTAppleCalendarCode */ = {
+			isa = PBXGroup;
+			children = (
+				711A4BE51E96A89F00A6DA25 /* Extensions.swift */,
+				711A4BDD1E96A89F00A6DA25 /* Animation.swift */,
+				711A4BDE1E96A89F00A6DA25 /* AnimationClass.swift */,
+				711A4BE21E96A89F00A6DA25 /* CellView.swift */,
+				711A4BE31E96A89F00A6DA25 /* CellView.xib */,
+			);
+			name = JTAppleCalendarCode;
 			sourceTree = "<group>";
 		};
 		71B72CB61EB6149C009D6DCA /* Aesthetics */ = {
@@ -238,8 +248,6 @@
 				71F5C68D1E9A94FC00C03145 /* EditGoalsTableViewCell.swift */,
 				3FC413611E9D349000AD95BD /* EditGoalsNewTableViewCell.swift */,
 				3FC413631E9D34A800AD95BD /* EditGoalsFinalTableViewCell.swift */,
-				711A4BE21E96A89F00A6DA25 /* CellView.swift */,
-				711A4BE31E96A89F00A6DA25 /* CellView.xib */,
 			);
 			name = ViewCells;
 			sourceTree = "<group>";
