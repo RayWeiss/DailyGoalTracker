@@ -5,7 +5,7 @@
 //  Created by Raymond Weiss on 4/6/17.
 //  Copyright © 2017 RaymondWeiss_MikeZrimsek. All rights reserved.
 //
-//  This code has been based on the JTAppleCalendar testApplicationCalendar example
+//  This code is based on the JTAppleCalendar testApplicationCalendar example
 //  https://github.com/patchthecode/JTAppleCalendar/
 //
 //  Code marked as "Standard JTAppleCalendar" is required for the calendar
@@ -22,6 +22,7 @@ class CalendarViewController: UIViewController, HasMainMenuProtocol, JTAppleCale
     
     var mainMenuVC: MainMenuViewController?
     
+    // Storyboard outlets
     @IBOutlet weak var progressCalendar: JTAppleCalendarView!
     @IBOutlet var nameOfMonth: UILabel!
     @IBOutlet weak var badPreformanceLabel: UILabel!
@@ -62,31 +63,15 @@ class CalendarViewController: UIViewController, HasMainMenuProtocol, JTAppleCale
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Always scoll to today
+        // Always scoll to "today"
         progressCalendar.scrollToDate((mainMenuVC?.todayDate)!)
-
         
+        // Set Key colors
         badPreformanceLabel.backgroundColor = darkBadColor
         mediocrePredormanceLabel.backgroundColor = darkMediocreColor
         goodPreformanceLabel.backgroundColor = darkGoodColor
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
-    // Standard JTAppleCalendar Method
-    // Handles orientation change
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        if let firstDateInfo = progressCalendar.visibleDates().indates.first {
-            progressCalendar.viewWillTransition(to: size, with: coordinator, focusDateIndexPathAfterRotate: firstDateInfo.indexPath)
-        } else {
-            let firstDateInfo = progressCalendar.visibleDates().monthDates.first!
-            progressCalendar.viewWillTransition(to: size, with: coordinator, focusDateIndexPathAfterRotate: firstDateInfo.indexPath)
-        }
-    }
-
     @IBAction func previousMonth(_ sender: UIButton) {
         self.progressCalendar.scrollToSegment(.previous)
     }
@@ -95,30 +80,16 @@ class CalendarViewController: UIViewController, HasMainMenuProtocol, JTAppleCale
         self.progressCalendar.scrollToSegment(.next)
     }
     
-    // Standard JTAppleCalendar Method
-    func setupViewsOfCalendar(from visibleDates: DateSegmentInfo) {
-        guard let startDate = visibleDates.monthDates.first?.date else {
-            return
-        }
-        let month = myCalendar.dateComponents([.month], from: startDate).month!
-        let monthName = DateFormatter().monthSymbols[(month-1) % 12]
-        let year = myCalendar.component(.year, from: startDate)
-        nameOfMonth.text = monthName + " " + String(year)
-    }
-    
-    
-    // Standard JTAppleCalendar
-    // Here down are the delegate / datasource methods
+    // From here down are the required delegate / datasource methods
     //
     // Modified JTAppleCalendar Method
     // sets swift "calendar" configuation options
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
-        
         myFormatter.dateFormat = myDateFormat
         myFormatter.timeZone = myCalendar.timeZone
         myFormatter.locale = myCalendar.locale
         
-        let parameters = ConfigurationParameters(startDate: myFormatter.date(from: beginingOfTime)!,
+        return ConfigurationParameters(startDate: myFormatter.date(from: beginingOfTime)!,
                                                  endDate: myFormatter.date(from: endOfTime)!,
                                                  numberOfRows: numberOfWeeksToShow,
                                                  calendar: myCalendar,
@@ -126,11 +97,10 @@ class CalendarViewController: UIViewController, HasMainMenuProtocol, JTAppleCale
                                                  generateOutDates: .tillEndOfGrid,
                                                  firstDayOfWeek: .sunday,
                                                  hasStrictBoundaries: true)
-        return parameters
     }
     
     // Modified JTAppleCalendar Method
-    // returns configured "day" cells for calendar display
+    // Returns configured "day" cells for calendar display
     public func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
         
         // Get a cell
@@ -190,15 +160,15 @@ class CalendarViewController: UIViewController, HasMainMenuProtocol, JTAppleCale
     }
     
     // Standard JTAppleCalendar Method
-    // loads first month label
+    // Handles scrolling
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
-        self.setupViewsOfCalendar(from: visibleDates)
-    }
-    
-    // Standard JTAppleCalendar Method
-    // handles end of month scrolling
-    func scrollDidEndDecelerating(for calendar: JTAppleCalendarView) {
-        self.setupViewsOfCalendar(from: progressCalendar.visibleDates())
+        guard let startDate = visibleDates.monthDates.first?.date else {
+            return
+        }
+        let month = myCalendar.dateComponents([.month], from: startDate).month!
+        let monthName = DateFormatter().monthSymbols[(month-1) % 12]
+        let year = myCalendar.component(.year, from: startDate)
+        nameOfMonth.text = monthName + " " + String(year)
     }
     
 }
