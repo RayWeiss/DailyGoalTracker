@@ -18,14 +18,11 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // make cell unselectable
         tableView.allowsSelection = false
         
         let inset = UIEdgeInsetsMake(20, 20, 20, 0)
         self.tableView.contentInset = inset
     }
-    
-    // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return sectionCount
@@ -47,11 +44,9 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! EditGoalsTableViewCell
             
-            // Configure the cell...
             cell.goalTextField.text = (mainMenuVC?.goalList[indexPath.row].text)!
             cell.setTitleBlackLeft(withString: (mainMenuVC?.goalList[indexPath.row].text)!)
             
-            // set tags as index row
             cell.goalTextField.tag = indexPath.row
             cell.deleteGoalButton.tag = indexPath.row
             cell.goalLabelButton.tag = indexPath.row
@@ -59,26 +54,17 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
             return cell
             
         default:
-//        case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewCell", for: indexPath) as! EditGoalsNewTableViewCell
             
-            // configure the cell
             cell.setTitleBlackLeft(withString: cell.addGoalText)
             cell.newGoalTextField.text = nil
             
-            // set tags as index row
             cell.newGoalTextField.tag = indexPath.row
             cell.addButton.tag = indexPath.row
             cell.newGoalLabelButton.tag = indexPath.row
             
             return cell
-            
-//        default:
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "FinalCell", for: indexPath) as! EditGoalsFinalTableViewCell
-//            
-//            return cell
         }
-        
     }
     
     @IBAction func newGoalLabelButtonPressed(_ sender: UIButton) {
@@ -108,8 +94,6 @@ class EditGoalsViewController: UITableViewController, UITextFieldDelegate, HasMa
             if let textFieldText = sender.text {
                 if !textFieldText.isEmpty {
                     cell.setTitleBlackLeft(withString: textFieldText)
-                    
-                    // Update goal list
                     mainMenuVC?.goalList[goalIndex] = Goal(desc: textFieldText, done: false)
                 }
             }

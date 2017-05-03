@@ -13,29 +13,15 @@ class MainMenuViewController: UIViewController {
     let mediocreCutOff = 0.30
     let goodCutOff = 0.80
     
-    // Array to hold users daily goal list
     var goalList: [Goal] = []
-    
-    // Dictionary to hold past progress
-    //
-    // key is date.hashValue
-    // value is enum "GoalProgress" possible values are .bad, .mediocre, and .good
     var ProgressHistory: [Int:GoalProgress] = [:]
-
     var todayDate: Date = NSDate() as Date
 
-    
-
     override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
+        super.viewDidLoad()    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get a reference to the destination view controller
         let destVC = segue.destination as? HasMainMenuProtocol
-        
-        // Provide the upcoming view controller with a reference to this view controller
         destVC?.mainMenuVC = self
     }
 
