@@ -82,7 +82,7 @@ class CalendarViewController: UIViewController, HasMainMenuProtocol, JTAppleCale
     
     // From here down are the required delegate / datasource methods
     //
-    // Modified JTAppleCalendar Method
+    // Standard JTAppleCalendar Method
     // sets swift "calendar" configuation options
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
         myFormatter.dateFormat = myDateFormat
