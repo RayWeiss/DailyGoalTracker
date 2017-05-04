@@ -20,7 +20,8 @@ class MainMenuViewController: UIViewController {
     var todayDate: Date = NSDate() as Date
 
     override func viewDidLoad() {
-        super.viewDidLoad()    }
+        super.viewDidLoad()
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destVC = segue.destination as? HasMainMenuProtocol
@@ -59,8 +60,19 @@ class MainMenuViewController: UIViewController {
         formatter.dateFormat = "yyyy MM dd"
         formatter.timeZone = myCalendar.timeZone
         formatter.locale = myCalendar.locale
-        let dateString = formatter.string(from: todayDate)
-        let thisDate = formatter.date(from: dateString)!
+        var dateString: String
+        var thisDate: Date
+        if devOptionsOn {
+            dateString = formatter.string(from: todayDate)
+            thisDate = formatter.date(from: dateString)!
+            print("from todayDate")
+        } else {
+            let today = NSDate() as Date
+            dateString = formatter.string(from: today)
+            thisDate = formatter.date(from: dateString)!
+            print("from today")
+        }
+
         
         return thisDate
     }
