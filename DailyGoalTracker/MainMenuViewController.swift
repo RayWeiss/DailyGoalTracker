@@ -9,7 +9,9 @@
 import UIKit
 
 class MainMenuViewController: UIViewController {
-        
+    
+    var devOptionsOn = false
+    
     let mediocreCutOff = 0.30
     let goodCutOff = 0.80
     

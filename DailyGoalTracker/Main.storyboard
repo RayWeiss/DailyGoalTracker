@@ -23,7 +23,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JoF-Rd-QYd" id="N2Y-ao-44W">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="99"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D2a-mJ-mIP">
@@ -57,7 +57,7 @@
                                 <rect key="frame" x="0.0" y="128" width="414" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uhO-y1-iGl" id="9SL-Cr-6WO">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="99"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r6C-Xg-AfZ" customClass="addButton" customModule="DailyGoalTracker" customModuleProvider="target">
@@ -146,22 +146,49 @@
                                     <action selector="clearProgressButtonPressed:" destination="BvT-zJ-gkh" eventType="touchUpInside" id="CUV-IC-1cQ"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Developer Options:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ad-nc-RPy">
+                                <rect key="frame" x="36" y="113" width="157" height="20"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
+                                <color key="textColor" red="0.43666840480000002" green="0.45216381369999997" blue="0.4610076414" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rVE-Y1-RcF">
+                                <rect key="frame" x="330" y="153" width="51" height="31"/>
+                                <connections>
+                                    <action selector="devOptionsToggled:" destination="BvT-zJ-gkh" eventType="valueChanged" id="B5N-8h-rSo"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="On" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4nx-rK-dCH">
+                                <rect key="frame" x="36" y="158" width="23.666666666666664" height="20"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
+                                <color key="textColor" red="0.43666840480000002" green="0.45216381369999997" blue="0.4610076414" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="97F-hq-SHm" secondAttribute="trailing" constant="15" id="35v-fd-9g3"/>
                             <constraint firstItem="ecZ-xh-2xE" firstAttribute="leading" secondItem="XHn-PV-FZA" secondAttribute="leadingMargin" constant="57" id="HNK-Hl-U2R"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="rVE-Y1-RcF" secondAttribute="trailing" constant="15" id="IuJ-uV-PGi"/>
+                            <constraint firstItem="AAU-K0-Qg7" firstAttribute="top" secondItem="rVE-Y1-RcF" secondAttribute="bottom" constant="48" id="JC4-7z-lpm"/>
                             <constraint firstItem="97F-hq-SHm" firstAttribute="centerY" secondItem="XHn-PV-FZA" secondAttribute="centerY" id="Z9J-jX-aPx"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ecZ-xh-2xE" secondAttribute="trailing" constant="57" id="c9L-wD-gnD"/>
+                            <constraint firstItem="4nx-rK-dCH" firstAttribute="leading" secondItem="XHn-PV-FZA" secondAttribute="leadingMargin" constant="16" id="kJ1-Wj-0Kj"/>
+                            <constraint firstItem="1ad-nc-RPy" firstAttribute="leading" secondItem="XHn-PV-FZA" secondAttribute="leadingMargin" constant="16" id="lER-5h-oFc"/>
                             <constraint firstItem="97F-hq-SHm" firstAttribute="top" secondItem="AAU-K0-Qg7" secondAttribute="bottom" constant="8.6666666666666856" id="lbq-je-NNm"/>
                             <constraint firstItem="97F-hq-SHm" firstAttribute="leading" secondItem="XHn-PV-FZA" secondAttribute="leadingMargin" constant="16" id="mmb-sX-lKI"/>
+                            <constraint firstItem="AAU-K0-Qg7" firstAttribute="top" secondItem="4nx-rK-dCH" secondAttribute="bottom" constant="54" id="nv8-tN-OrI"/>
                             <constraint firstItem="AAU-K0-Qg7" firstAttribute="width" secondItem="XHn-PV-FZA" secondAttribute="width" id="qnq-Kv-eNA"/>
                             <constraint firstItem="ecZ-xh-2xE" firstAttribute="top" secondItem="97F-hq-SHm" secondAttribute="bottom" constant="7.3333333333333144" id="rG2-Xn-3XG"/>
+                            <constraint firstItem="4nx-rK-dCH" firstAttribute="top" secondItem="1ad-nc-RPy" secondAttribute="bottom" constant="25" id="rhP-Xj-ZBg"/>
                             <constraint firstItem="AAU-K0-Qg7" firstAttribute="centerX" secondItem="XHn-PV-FZA" secondAttribute="centerX" id="vmY-ax-ouP"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Developer Options" id="4Y4-Eu-iMY"/>
                     <connections>
+                        <outlet property="clearProgressButton" destination="ecZ-xh-2xE" id="FLt-2r-yBq"/>
+                        <outlet property="devOptionsLabel" destination="4nx-rK-dCH" id="JsI-LM-8hu"/>
+                        <outlet property="devOptionsSwitch" destination="rVE-Y1-RcF" id="m2y-Zj-S4M"/>
                         <outlet property="developerDatePicker" destination="97F-hq-SHm" id="PjJ-RA-2Qu"/>
                     </connections>
                 </viewController>
@@ -182,7 +209,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hel-9Y-in5" id="8NQ-hN-ix5">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="99"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wKY-gs-6xn" customClass="deleteButton" customModule="DailyGoalTracker" customModuleProvider="target">
@@ -238,7 +265,7 @@
                                 <rect key="frame" x="0.0" y="128" width="414" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qJq-1m-Ene" id="5BM-4j-gxL">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="99"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VSq-qU-1w8" customClass="addButton" customModule="DailyGoalTracker" customModuleProvider="target">
@@ -295,7 +322,7 @@
                                 <rect key="frame" x="0.0" y="228" width="414" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vZl-Ld-Bv7" id="CeB-3u-seO">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="99"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uG1-Bh-vnv">

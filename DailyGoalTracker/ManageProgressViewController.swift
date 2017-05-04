@@ -73,6 +73,8 @@ class ManageProgressViewController: UITableViewController, HasMainMenuProtocol {
         }
         
         _ = navigationController?.popViewController(animated: true)
+        
+        mainMenuVC?.setAllGoalsToNotCompleted()
 
     }
     
