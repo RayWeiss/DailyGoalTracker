@@ -19,10 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var delegateGoalList: [Goal] = []
     var delegateProgressHistory: [Int:GoalProgress] = [:]
     
-    
 
-
-    
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
         
         print("Will finish launching")
@@ -75,12 +72,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        print("Did Enter Background")
-    }
-    
-    func applicationWillTerminate(_ application: UIApplication) {
-        print("Will Terminate")
+    // Locks application in portrait
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask(rawValue: UIInterfaceOrientationMask.portrait.rawValue)
     }
     
     func readDictionary() {
@@ -207,6 +201,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print(" goalData did not = goalData")
         }
     }
-
-
 }

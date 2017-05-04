@@ -1,212 +1,174 @@
 //
-//  ViewController.swift
+//  CalendarViewController.swift
 //  DailyGoalTracker
 //
 //  Created by Raymond Weiss on 4/6/17.
 //  Copyright © 2017 RaymondWeiss_MikeZrimsek. All rights reserved.
 //
-//  Much of this code has been modified from the JTAppleCalendar testApplicationCalendar example
+//  This code is based on the JTAppleCalendar testApplicationCalendar example
+//  https://github.com/patchthecode/JTAppleCalendar/
+//
+//  Code marked as "Standard JTAppleCalendar" is required for the calendar
+//  to function properly
+//
+//  Code marked as "Modified JTAppleCalendar" is predefined class code that
+//  allows configuration of the calendar.  It has been modified to achieve the look
+//  and functionality of the calendar for DailyGoalTracker
 //
 
 import JTAppleCalendar
 
-class CalendarViewController: UIViewController, HasMainMenuProtocol {
+class CalendarViewController: UIViewController, HasMainMenuProtocol, JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSource {
     
     var mainMenuVC: MainMenuViewController?
     
-    @IBOutlet weak var calendarView: JTAppleCalendarView!
-    @IBOutlet var monthLabel: UILabel!
-    @IBOutlet weak var weekViewStack: UIStackView!
-    
-    
-    var numberOfRows = 6
-    let formatter = DateFormatter()
-    var myCalendar = Calendar.current
-    var generateInDates: InDateCellGeneration = .forAllMonths
-    var generateOutDates: OutDateCellGeneration = .tillEndOfGrid
-    var prePostVisibility: ((CellState, CellView?)->())?
-    var hasStrictBoundaries = true
-    let firstDayOfWeek: DaysOfWeek = .sunday
-
-    
-    
+    // Storyboard outlets
+    @IBOutlet weak var progressCalendar: JTAppleCalendarView!
+    @IBOutlet var nameOfMonth: UILabel!
     @IBOutlet weak var badPreformanceLabel: UILabel!
     @IBOutlet weak var mediocrePredormanceLabel: UILabel!
     @IBOutlet weak var goodPreformanceLabel: UILabel!
     
+    // Calendar Configuration
+    let numberOfWeeksToShow = 6
+    let myFormatter = DateFormatter()
+    var myCalendar = Calendar.current
+    let fontName = "Helvetica-Bold"
+    let fontSize = CGFloat(20.0)
+    let myDateFormat = "yyyy MM dd"
+    let beginingOfTime = "2000 01 01"
+    let endOfTime = "2099 12 31"
+    let borderWidth = 1 // default is 2
     
-    // Colors
+    // Calendar Colors
+    let todayBackgroundColor = UIColor.white
+    let unmarkedDayBackgroundColor = UIColor.white
+    
+    let todayTextColor = UIColor.blue
+    let thisMonthDayTextColor = UIColor.black
+    let otherMonthDayTextColor = UIColor.gray
+    
+    let borderColor = UIColor.white
+    
+    // Progress Colors
     let darkBadColor = UIColor(colorWithHexValue: 0xf5aaa3)
     let lightBadColor = UIColor(colorWithHexValue: 0xfad4d1)
-
+    
     let darkMediocreColor = UIColor(colorWithHexValue: 0xfde59b)
     let lightMediocreColor = UIColor(colorWithHexValue: 0xfef2cd)
-
+    
     let darkGoodColor = UIColor(colorWithHexValue: 0x8adba0)
     let lightGoodColor = UIColor(colorWithHexValue: 0xc4edcf)
-
     
-    let todayBackgroundColor = UIColor.white
-    let todayTextColor = UIColor.blue
-    
-    let myBorderColor = UIColor(colorWithHexValue: 0xffffff)//0x86b4ef / 0xd4dbe7
-    let myBorderWidth = 0 // default is 2
-    
-    let white = UIColor.white
-    let black = UIColor.black
-    let gray = UIColor.gray
-    let orange = UIColor.orange
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Always scoll to today
-        calendarView.scrollToDate(NSDate() as Date)
+        // Always scoll to "today"
+        progressCalendar.scrollToDate((mainMenuVC?.todayDate)!)
         
+        // Set Key colors
         badPreformanceLabel.backgroundColor = darkBadColor
         mediocrePredormanceLabel.backgroundColor = darkMediocreColor
         goodPreformanceLabel.backgroundColor = darkGoodColor
     }
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        if let firstDateInfo = calendarView.visibleDates().indates.first {
-            calendarView.viewWillTransition(to: size, with: coordinator, focusDateIndexPathAfterRotate: firstDateInfo.indexPath)
+    @IBAction func previousMonth(_ sender: UIButton) {
+        self.progressCalendar.scrollToSegment(.previous)
+    }
+    
+    @IBAction func nextMonth(_ sender: UIButton) {
+        self.progressCalendar.scrollToSegment(.next)
+    }
+    
+    // From here down are the required delegate / datasource methods
+    //
+    // Standard JTAppleCalendar Method
+    // sets swift "calendar" configuation options
+    func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
+        myFormatter.dateFormat = myDateFormat
+        myFormatter.timeZone = myCalendar.timeZone
+        myFormatter.locale = myCalendar.locale
+        
+        return ConfigurationParameters(startDate: myFormatter.date(from: beginingOfTime)!,
+                                                 endDate: myFormatter.date(from: endOfTime)!,
+                                                 numberOfRows: numberOfWeeksToShow,
+                                                 calendar: myCalendar,
+                                                 generateInDates: .forAllMonths,
+                                                 generateOutDates: .tillEndOfGrid,
+                                                 firstDayOfWeek: .sunday,
+                                                 hasStrictBoundaries: true)
+    }
+    
+    // Modified JTAppleCalendar Method
+    // Returns configured "day" cells for calendar display
+    public func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
+        
+        // Get a cell
+        let modifiedCell = calendar.dequeueReusableCell(withReuseIdentifier: "CellView", for: indexPath) as! CellView
+        
+        // Set date text
+        modifiedCell.dayLabel.text = cellState.text
+        
+        // Handle progress color / background color
+        if let progress = mainMenuVC?.ProgressHistory[date.hashValue] {
+            switch progress {
+            case .bad:
+                if cellState.dateBelongsTo == .thisMonth {
+                    modifiedCell.backgroundColor = darkBadColor
+                } else {
+                    modifiedCell.backgroundColor = lightBadColor
+                }
+                
+            case .mediocre:
+                if cellState.dateBelongsTo == .thisMonth {
+                    modifiedCell.backgroundColor = darkMediocreColor
+                } else {
+                    modifiedCell.backgroundColor = lightMediocreColor
+                }
+                
+            case .good:
+                if cellState.dateBelongsTo == .thisMonth {
+                    modifiedCell.backgroundColor = darkGoodColor
+                } else {
+                    modifiedCell.backgroundColor = lightGoodColor
+                }
+            }
         } else {
-            let firstDateInfo = calendarView.visibleDates().monthDates.first!
-            calendarView.viewWillTransition(to: size, with: coordinator, focusDateIndexPathAfterRotate: firstDateInfo.indexPath)
+            if myCalendar.isDateInToday(date) {
+                modifiedCell.backgroundColor = todayBackgroundColor
+            } else {
+                modifiedCell.backgroundColor = unmarkedDayBackgroundColor
+            }
         }
+        
+        // Handle borders
+        modifiedCell.layer.borderColor = borderColor.cgColor
+        modifiedCell.layer.borderWidth = CGFloat(borderWidth)
+        
+        // Handle day text
+        modifiedCell.dayLabel.font = UIFont(name: fontName, size: fontSize)
+        if cellState.dateBelongsTo == .thisMonth {
+            modifiedCell.dayLabel.textColor = thisMonthDayTextColor
+        } else {
+            modifiedCell.dayLabel.textColor = otherMonthDayTextColor
+        }
+        if myCalendar.isDate(cellState.date, inSameDayAs: (mainMenuVC?.todayDate)!) {
+            modifiedCell.dayLabel.textColor = todayTextColor
+        }
+        
+        return modifiedCell
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-
-    @IBAction func prev(_ sender: UIButton) {
-        self.calendarView.scrollToSegment(.previous) {
-            self.calendarView.visibleDates({ (visibleDates: DateSegmentInfo) in
-                self.setupViewsOfCalendar(from: visibleDates)
-            })
-        }
-    }
-    
-    @IBAction func next(_ sender: UIButton) {
-        self.calendarView.scrollToSegment(.next) {
-            self.calendarView.visibleDates({ (visibleDates: DateSegmentInfo) in
-                self.setupViewsOfCalendar(from: visibleDates)
-            })
-        }
-    }
-    
-    func setupViewsOfCalendar(from visibleDates: DateSegmentInfo) {
+    // Standard JTAppleCalendar Method
+    // Handles scrolling
+    func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
         guard let startDate = visibleDates.monthDates.first?.date else {
             return
         }
         let month = myCalendar.dateComponents([.month], from: startDate).month!
         let monthName = DateFormatter().monthSymbols[(month-1) % 12]
-        // 0 indexed array
         let year = myCalendar.component(.year, from: startDate)
-        monthLabel.text = monthName + " " + String(year)
-    }
-    
-    func handleCellConfiguration(cell: JTAppleCell?, cellState: CellState) {
-        handleCellTextColor(view: cell, cellState: cellState)
-        prePostVisibility?(cellState, cell as? CellView)
-        
-        cell?.layer.borderColor = myBorderColor.cgColor
-        cell?.layer.borderWidth = CGFloat(myBorderWidth)
-    }
-    
-    // Function to handle the text attributes of the calendar
-    func handleCellTextColor(view: JTAppleCell?, cellState: CellState) {
-        guard let myCustomCell = view as? CellView  else {
-            return
-        }
-        myCustomCell.dayLabel.font = UIFont(name: "Helvetica-Bold", size: CGFloat(20.0))
-        if cellState.dateBelongsTo == .thisMonth {
-            myCustomCell.dayLabel.textColor = black
-        } else {
-            myCustomCell.dayLabel.textColor = gray
-        }
-        if myCalendar.isDateInToday(cellState.date) {
-            myCustomCell.dayLabel.textColor = todayTextColor
-        }
+        nameOfMonth.text = monthName + " " + String(year)
     }
     
 }
-
-// MARK : JTAppleCalendarDelegate
-extension CalendarViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSource {
-    
-    func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
-        
-        formatter.dateFormat = "yyyy MM dd"
-        formatter.timeZone = myCalendar.timeZone
-        formatter.locale = myCalendar.locale
-        
-        
-        let startDate = formatter.date(from: "2000 01 01")!
-        let endDate = formatter.date(from: "2068 02 01")!
-        
-        let parameters = ConfigurationParameters(startDate: startDate,
-                                                 endDate: endDate,
-                                                 numberOfRows: numberOfRows,
-                                                 calendar: myCalendar,
-                                                 generateInDates: generateInDates,
-                                                 generateOutDates: generateOutDates,
-                                                 firstDayOfWeek: firstDayOfWeek,
-                                                 hasStrictBoundaries: hasStrictBoundaries)
-        return parameters
-    }
-    
-    public func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
-        let myCustomCell = calendar.dequeueReusableCell(withReuseIdentifier: "CellView", for: indexPath) as! CellView
-        
-        myCustomCell.dayLabel.text = cellState.text
-        
-        if let progress = mainMenuVC?.ProgressHistory[date.hashValue] {
-            switch progress {
-            case .bad:
-                if cellState.dateBelongsTo == .thisMonth {
-                    myCustomCell.backgroundColor = darkBadColor
-                } else {
-                    myCustomCell.backgroundColor = lightBadColor
-                }
-                
-            case .mediocre:
-                if cellState.dateBelongsTo == .thisMonth {
-                    myCustomCell.backgroundColor = darkMediocreColor
-                } else {
-                    myCustomCell.backgroundColor = lightMediocreColor
-                }
-
-            case .good:
-                if cellState.dateBelongsTo == .thisMonth {
-                    myCustomCell.backgroundColor = darkGoodColor
-                } else {
-                    myCustomCell.backgroundColor = lightGoodColor
-                }
-            }
-        } else {
-            if myCalendar.isDateInToday(date) {
-                myCustomCell.backgroundColor = todayBackgroundColor
-            } else {
-                myCustomCell.backgroundColor = white
-            }
-        }
-        
-
-        
-        handleCellConfiguration(cell: myCustomCell, cellState: cellState)
-        return myCustomCell
-    }
-    
-    func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
-        self.setupViewsOfCalendar(from: visibleDates)
-    }
-    
-    func scrollDidEndDecelerating(for calendar: JTAppleCalendarView) {
-        self.setupViewsOfCalendar(from: calendarView.visibleDates())
-    }
-
-}
-

@@ -15,15 +15,12 @@ class ManageProgressViewController: UITableViewController, HasMainMenuProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // make cell unselectable
+        
         tableView.allowsSelection = false
 
         let inset = UIEdgeInsetsMake(20, 20, 20, 0)
         self.tableView.contentInset = inset
     }
-    
-    // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return sectionCount
@@ -76,6 +73,8 @@ class ManageProgressViewController: UITableViewController, HasMainMenuProtocol {
         }
         
         _ = navigationController?.popViewController(animated: true)
+        
+        mainMenuVC?.setAllGoalsToNotCompleted()
 
     }
     

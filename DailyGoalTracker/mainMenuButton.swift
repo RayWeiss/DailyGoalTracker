@@ -16,32 +16,22 @@ import UIKit
     let blue = UIColor(colorWithHexValue: 0x86b4ef)
     let white = UIColor(colorWithHexValue: 0xffffff)
 
-    let bgColor = UIColor(colorWithHexValue: 0x86b4ef)//UIColor(colorWithHexValue: 0xf3f9ff)
+    let bgColor = UIColor(colorWithHexValue: 0x86b4ef)
     let borderColor = UIColor(colorWithHexValue: 0xb3d9ff)
-    let textColor = UIColor(colorWithHexValue: 0xffffff)//UIColor(colorWithHexValue: 0x6c8093)
+    let textColor = UIColor(colorWithHexValue: 0xffffff)
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         setAttributes()
     }
     
     func setAttributes() {
-        // Background attributes
         layer.backgroundColor = bgColor.cgColor
         clipsToBounds = true
         
-        // Border attributes
         layer.cornerRadius = frame.size.height / 2
-//        layer.borderColor = borderColor.cgColor
-//        layer.borderWidth = 2
         
-        // Text attributes
         setTitleColor(textColor, for: UIControlState.normal)
         titleLabel!.font = UIFont(name: "Helvetica-Bold", size: CGFloat(17.0))
-        
     }
-
-    
-    
 }

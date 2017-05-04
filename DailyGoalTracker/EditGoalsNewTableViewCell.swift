@@ -18,12 +18,10 @@ class EditGoalsNewTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
     func setTitleBlackLeft(withString title: String) {
         let gray = UIColor(colorWithHexValue: 0x6d6b77)
-        //        let blackFontAttribute = [NSForegroundColorAttributeName: UIColor.black]
         let grayFontAttribute = [NSForegroundColorAttributeName: gray]
         let attributedGoalString = NSAttributedString(string: title, attributes: grayFontAttribute)
         
